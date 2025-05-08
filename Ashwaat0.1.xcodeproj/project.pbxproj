@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		327123F02DCC80FF00CA17D3 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 327123EF2DCC80FF00CA17D3 /* Localizable.xcstrings */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3258FA742DCBD78F00413C98 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		3258FA632DCBD78E00413C98 /* Ashwaat0.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ashwaat0.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3258FA732DCBD78F00413C98 /* Ashwaat0.1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ashwaat0.1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3258FA7D2DCBD78F00413C98 /* Ashwaat0.1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ashwaat0.1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		327123EF2DCC80FF00CA17D3 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -79,6 +84,7 @@
 				3258FA762DCBD78F00413C98 /* Ashwaat0.1Tests */,
 				3258FA802DCBD78F00413C98 /* Ashwaat0.1UITests */,
 				3258FA642DCBD78E00413C98 /* Products */,
+				327123EF2DCC80FF00CA17D3 /* Localizable.xcstrings */,
 			);
 			sourceTree = "<group>";
 		};
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				327123F02DCC80FF00CA17D3 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +406,10 @@
 				DEVELOPMENT_TEAM = WVVL9YZMLF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Ashwaat0-1-Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "We use motion data to count steps and improve accuracy during tracking.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +439,10 @@
 				DEVELOPMENT_TEAM = WVVL9YZMLF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Ashwaat0-1-Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "We use motion data to count steps and improve accuracy during tracking.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
