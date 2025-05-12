@@ -46,7 +46,32 @@
       "shouldTranslate" : false
     },
     "Allow Access" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "السماح بالوصول"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اجازه موقعیت مکانی"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autorisez l’accès"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اجازت دیں"
+          }
+        }
+      }
     },
     "Allow location" : {
       "extractionState" : "manual",
@@ -322,7 +347,32 @@
       }
     },
     "Laps tracked,\nFocus Intact" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الأشواط تُعدّ، والخشوع يمتدّ"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دورها ثبت شده‌اند، تمرکز حفظ شده است"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tours suivis, concentration maintenue"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "چکر ریکارڈ ہو گئے، توجہ برقرار ہے"
+          }
+        }
+      }
     },
     "Let’s begin" : {
       "extractionState" : "stale",
@@ -354,7 +404,32 @@
       }
     },
     "Let's begin counting your Ashwaat!" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لنبدأ في عد أشـواطك"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بیایید شمارش اشواط شما را آغاز کنیم!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commençons à compter vos tours (Ashwaat)!"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آئیے آپ کے اشواط (چکر) گننا شروع کریں!"
+          }
+        }
+      }
     },
     "Let’s begin counting your Ashwaat!" : {
       "extractionState" : "manual",
@@ -374,7 +449,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Commençons à compter vos tours (Ashwaat) !"
+            "value" : "Commençons à compter vos tours (Ashwaat)!"
           }
         },
         "ur" : {
