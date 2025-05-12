@@ -136,10 +136,10 @@ class TrackingManager: ObservableObject {
     private let maxCycleProgress: Double = 1.1 // 110% of full circle allowed
     
     // Kaaba center coordinates
-    private let kaabaCenterLatitude: Double = 24.860810237081548
-    private let kaabaCenterLongitude: Double = 46.727509656759025
-    private let startLineLatitude: Double = 24.86064//24.860872072775535
-    private let startLineLongitude: Double = 24.86064//46.72800847065588
+    private let kaabaCenterLatitude: Double = 24.860870496480675 //24.860870496480675//24.860810237081548
+    private let kaabaCenterLongitude: Double = 24.860870496480675 //46.7282289611649//46.727509656759025
+    private let startLineLatitude: Double = 24.860872072775535 //24.860681010858862//24.860872072775535 //24.86064/
+    private let startLineLongitude: Double = 46.72800847065588 //46.727716325625636 //24.86064//46.72800847065588
     
     private var lastStartLineCrossing: CLLocation? = nil
     private var lastLapRotation: Double = 0.0
@@ -161,7 +161,7 @@ class TrackingManager: ObservableObject {
     
     // Constants for Tawaf tracking
     private let raceRadiusMeters: Double = 20.0 // Radius of the circle
-    private let startLineLength: Double = 5.0 // Length of the start line
+    private let startLineLength: Double = 10.0 // Length of the start line
     private var totalLapDistance: Double = 0.0
     private var hasStartedLap: Bool = false
     
@@ -542,7 +542,17 @@ class TrackingManager: ObservableObject {
                 totalLapDistance += distanceFromLast
             }
         }
-        
+//        guard let context = modelContext else {
+//            print("❌ modelContext is nil, can't save Tawaf data")
+//            return
+//        }
+//        saveTawafData(
+//            context: context,
+//            laps: currentIndoorLaps,
+//            distance: currentIndoorDistance,
+//            steps: currentIndoorSteps
+//            //startTime: startTime
+//        )
         // Check if we're near the start line
         let isNearStartLineNow = isNearStartLine(currentLocationCL)
         
@@ -568,8 +578,20 @@ class TrackingManager: ObservableObject {
                 lastStartLineCrossing = currentLocationCL
                 totalLapDistance = 0.0
                 
-                // Auto-save after each completed lap
-                //autoSaveTawafData()
+           
+                // ✅ Save session
+                 guard let context = modelContext else {
+                     print("❌ modelContext is nil, can't save Tawaf data")
+                     return
+                 }
+                 print("before call saveTawafData")
+                 saveTawafData(
+                     context: context,
+                     laps: currentIndoorLaps,
+                     distance: currentIndoorDistance,
+                     steps: currentIndoorSteps
+                     //startTime: startTime
+                 )
                 
                 if currentIndoorLaps == maxLaps {
                     lapStatus = "Tawaf Complete! 🎉"
@@ -616,35 +638,8 @@ class TrackingManager: ObservableObject {
         motionManager.stopDeviceMotionUpdates()
         locationManager.stopLocationUpdates()
         
-        // Stop auto-save timer
-        //stopAutoSaveTimer()
-        
-        // Save the final Tawaf data
-       // saveTawafData()
-    }
+            }
     
-//    private func saveTawafData() {
-//        guard let modelContext = modelContext else { return }
-//        
-//        let duration = startTime.map { Date().timeIntervalSince($0) } ?? 0.0
-//        
-//        let tawafData = TawafData(
-//            date: Date(),
-//            laps: currentIndoorLaps,
-//            distance: currentIndoorDistance,
-//            steps: currentIndoorSteps,
-//            duration: duration
-//        )
-//        
-//        modelContext.insert(tawafData)
-//        
-//        do {
-//            try modelContext.save()
-//            print("Tawaf data saved successfully")
-//        } catch {
-//            print("Error saving Tawaf data: \(error)")
-//        }
-//    }
     
     func resetIndoorTracking() {
         indoorSteps = 0
@@ -705,37 +700,48 @@ class TrackingManager: ObservableObject {
         return normalized
     }
     
-//    private func startAutoSaveTimer() {
-//        autoSaveTimer = Timer.scheduledTimer(withTimeInterval: autoSaveInterval, repeats: true) { [weak self] _ in
-//            self?.autoSaveTawafData()
-//        }
-//    }
+ 
+ private func saveTawafData(
     
-//    private func stopAutoSaveTimer() {
-//        autoSaveTimer?.invalidate()
-//        autoSaveTimer = nil
-//    }
-//    
-//    private func autoSaveTawafData() {
-//        guard isIndoorTrackingActive else { return }
-//        
-//        let duration = startTime.map { Date().timeIntervalSince($0) } ?? 0.0
-//        
-//        let tawafData = TawafData(
-//            date: Date(),
-//            laps: currentIndoorLaps,
-//            distance: currentIndoorDistance,
-//            steps: currentIndoorSteps,
-//            duration: duration
-//        )
-//        
-//        modelContext?.insert(tawafData)
-//        
-//        do {
-//            try modelContext?.save()
-//            print("Auto-saved Tawaf data: \(currentIndoorLaps) laps, \(String(format: "%.1f", currentIndoorDistance))m")
-//        } catch {
-//            print("Error auto-saving Tawaf data: \(error)")
+        context: ModelContext?,
+        laps: Int,
+        distance: Double,
+        steps: Int
+        //startTime: Date?
+    ) {
+        print("📥 In saveTawafData")
+
+        guard let context = context else {
+            print("❌ ModelContext is nil.")
+            return
+        }
+
+//        guard let startTime = startTime else {
+//            print("❌ Start time is nil.")
+//            return
 //        }
-//    }
+
+        // Create session on main thread
+        DispatchQueue.main.async {
+            let session = TawafSession(
+                laps: laps,
+                distance: distance,
+                steps: steps
+                //startTime: startTime
+            )
+
+            context.insert(session)
+
+            do {
+                try context.save()
+                print("✅ Tawaf session saved successfully.")
+            } catch {
+                print("❌ Failed to save Tawaf session: \(error)")
+            }
+        }
+    }
+
+
+
+
 }

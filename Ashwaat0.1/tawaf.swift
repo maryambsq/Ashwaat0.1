@@ -175,11 +175,11 @@ struct tawaf: View {
             .navigationBarBackButtonHidden(true) // Hide the back button for this view
         }
         
-//        Button("Insert Test") {
-//            let test = TawafData(date: .now, laps: 1, distance: 100, steps: 200, duration: 120)
-//            modelContext.insert(test)
-//            try? modelContext.save()
-//        }
+        Button("Insert Test") {
+            let test = TawafSession(date: .now, laps: 1, distance: 100, steps: 200)
+            modelContext.insert(test)
+            try? modelContext.save()
+        }
     }
 
     func startTimer() {
