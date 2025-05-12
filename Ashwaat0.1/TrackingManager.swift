@@ -13,6 +13,8 @@ import simd
 import SwiftData
 
 class TrackingManager: ObservableObject {
+    @Published var lapProgress: Double = 0.0 // Progress in percent (0–100%)
+
     private let motionManager = CMMotionManager()
     private let pedometer = CMPedometer()
     private var timer: Timer?
@@ -31,6 +33,70 @@ class TrackingManager: ObservableObject {
     
     // SwiftData context
     private var modelContext: ModelContext?
+    
+    // MARK: - Angular Lap Tracking Logic
+
+    // Define Kaaba center and start line globally or in your init
+    private var previousAngle: Double?
+    private let kaabaCoordinate = CLLocationCoordinate2D(latitude: 24.860870496480675, longitude: 24.860870496480675) // Demo coords
+    private let startLineCoordinate = CLLocationCoordinate2D(latitude: 24.860872072775535, longitude: 46.72800847065588) // Demo coords
+
+    // Track progress angle
+    private var accumulatedAngle: Double = 0.0
+
+    // Converts coordinate to vector relative to center
+    private func angleFromKaaba(to location: CLLocationCoordinate2D) -> Double {
+        let dx = location.longitude - kaabaCoordinate.longitude
+        let dy = location.latitude - kaabaCoordinate.latitude
+        return atan2(dy, dx)
+    }
+    
+    func updateLapProgress(currentLocation: CLLocationCoordinate2D) {
+        let currentAngle = angleFromKaaba(to: currentLocation)
+
+        if let last = previousAngle {
+            var delta = currentAngle - last
+            if delta > .pi { delta -= 2 * .pi }
+            if delta < -.pi { delta += 2 * .pi }
+
+            accumulatedAngle += delta
+
+            // Calculate progress as percentage
+            let progress = min(abs(accumulatedAngle) / (2 * .pi), 1.0)
+            lapProgress = progress * 100.0 // Percent value for UI
+
+            if abs(accumulatedAngle) >= 2 * .pi {
+                currentIndoorLaps += 1
+                accumulatedAngle = 0
+                print("✅ Lap Completed! Total: \(currentIndoorLaps)")
+            }
+        }
+
+        previousAngle = currentAngle
+    }
+
+//    // Call this in a loop or location update method
+//    func updateLapProgress(currentLocation: CLLocationCoordinate2D) {
+//        let currentAngle = angleFromKaaba(to: currentLocation)
+//        
+//        if let last = previousAngle {
+//            var delta = currentAngle - last
+//            if delta > .pi { delta -= 2 * .pi }
+//            if delta < -.pi { delta += 2 * .pi }
+//            accumulatedAngle += delta
+//
+//            // Optional: clamp angle for visualization
+//            let progress = min(abs(accumulatedAngle) / (2 * .pi), 1.0)
+//            print("Lap progress: \(progress * 100)%")
+//
+//            if abs(accumulatedAngle) >= 2 * .pi {
+//                currentIndoorLaps += 1
+//                accumulatedAngle = 0
+//                print("✅ Lap Completed! Total: \(currentIndoorLaps)")
+//            }
+//        }
+//        previousAngle = currentAngle
+//    }
     
     // Add initializer
     init(locationManager: LocationManager, modelContext: ModelContext? = nil) {

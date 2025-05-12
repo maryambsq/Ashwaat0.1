@@ -82,12 +82,14 @@ struct tawaf: View {
                         .frame(width: 280, height: 280)
                     
                     Circle()
-                        .trim(from: 0, to: CGFloat(trackingManager.currentIndoorLaps))
+//                        .trim(from: 0, to: CGFloat(trackingManager.currentIndoorLaps))
+                        .trim(from: 0, to: trackingManager.lapProgress / 100)
                         .stroke(isTrackingPaused ? Color.stopgreeno : Color.greeno, style: StrokeStyle(lineWidth: 40, lineCap: .round))
                         .rotationEffect(.degrees(-90))
                         .frame(width: 280, height: 280)
                         .id(circleID)
-                        .animation(.easeInOut(duration: 1.0), value: progress)
+//                        .animation(.easeInOut(duration: 1.0), value: progress)
+                        .animation(.easeInOut(duration: 1.0), value: trackingManager.lapProgress)
                     
                     Text(formattedEnglishNumber(trackingManager.currentIndoorLaps))
                         .font(.system(size: 80, weight: .bold ,design: .rounded))
