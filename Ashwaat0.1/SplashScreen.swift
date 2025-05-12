@@ -8,8 +8,36 @@
 import SwiftUI
 
 struct SplashScreen: View {
+    @State private var isActive = false
+    @State private var fadeInLogo = false
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Group {
+            if isActive {
+                AccessLocation()
+            } else {
+                ZStack {
+                    Image("SplashBG")
+                        .resizable()
+                        .ignoresSafeArea()
+                    Image("Logo")
+                        .resizable()
+                        .frame(width: 90, height: 90)
+                        .opacity(fadeInLogo ? 0.75 : 0)
+                        .animation(.easeIn(duration: 0.5), value: fadeInLogo)
+                }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                fadeInLogo = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation {
+                    isActive = true
+                }
+            }
+        }
     }
 }
 

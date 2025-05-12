@@ -11,7 +11,7 @@ import SwiftUI
 struct Ashwaat0_1App: App {
     var body: some Scene {
         WindowGroup {
-            AccessLocation()
+            SplashScreen()
         }
     }
 }
