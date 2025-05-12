@@ -8,34 +8,10 @@
 import SwiftUI
 import CoreLocation
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    private let manager = CLLocationManager()
-    
-    @Published var authorizationStatus: CLAuthorizationStatus?
-    
-    override init() {
-        super.init()
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        checkAuthorization()
-    }
-    
-    func checkAuthorization() {
-        authorizationStatus = manager.authorizationStatus
-    }
-    
-    func requestPermission() {
-        manager.requestWhenInUseAuthorization()
-    }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        self.authorizationStatus = manager.authorizationStatus
-    }
-}
-
 struct AccessLocation: View {
     @StateObject private var locationManager = LocationManager()
     @State private var shouldNavigate = false
+    @Environment(\.openURL) private var openURL
     
     var body: some View {
         NavigationStack {
@@ -65,7 +41,7 @@ struct AccessLocation: View {
                         .fontDesign(.rounded)
                     
                     Button(action: {
-                        handleLocationAuthorization()
+                        locationManager.handleLocationAuthorization()
                     }) {
                         Text("Allow Access")
                             .font(.title3)
@@ -84,27 +60,17 @@ struct AccessLocation: View {
                     shouldNavigate = true
                 }
             }
+            .onChange(of: locationManager.shouldOpenSettings) { shouldOpen in
+                if shouldOpen {
+                    if let settingsUrl = URL(string: "app-settings:") {
+                        openURL(settingsUrl)
+                    }
+                    locationManager.shouldOpenSettings = false
+                }
+            }
             .navigationDestination(isPresented: $shouldNavigate) {
                 VerifyLocation()
             }
-        }
-    }
-    
-    private func handleLocationAuthorization() {
-        guard let status = locationManager.authorizationStatus else {
-            locationManager.requestPermission()
-            return
-        }
-        
-        switch status {
-        case .notDetermined:
-            locationManager.requestPermission()
-        case .denied, .restricted:
-            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(appSettings)
-            }
-        default:
-            break
         }
     }
 }
@@ -112,3 +78,4 @@ struct AccessLocation: View {
 #Preview {
     AccessLocation()
 }
+

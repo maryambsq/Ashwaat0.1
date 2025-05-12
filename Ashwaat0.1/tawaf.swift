@@ -18,21 +18,28 @@ struct tawaf: View {
 
     @State private var progress: CGFloat = 0
     @State private var circleID = UUID()
+    
+    
+    @Environment(\.modelContext) var modelContext
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var locationManager: LocationManager
+    @EnvironmentObject var trackingManager: TrackingManager
+    
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 40) {
                 Spacer()
-
+                
                 HStack {
                     Spacer()
                     Spacer()
-
+                    
                     // ✅ NavigationLink مخفي للرجوع إلى الصفحة الرئيسية
                     NavigationLink(destination: TawafMain(), isActive: $backToHome) {
                         EmptyView()
                     }
-
+                    
                     // ✅ زر السهم لتفعيل الرجوع
                     Button(action: {
                         backToHome = true
@@ -42,7 +49,7 @@ struct tawaf: View {
                             .foregroundColor(.gray.opacity(0.5))
                             .padding(.trailing)
                     }
-
+                    
                     Spacer()
                     Spacer()
                     Spacer()
@@ -61,9 +68,9 @@ struct tawaf: View {
                     Spacer()
                     Spacer()
                 }
-
+                
                 Spacer()
-
+                
                 // ✅ NavigationLink عند نهاية الطواف
                 NavigationLink(destination: Summary(), isActive: $navigateToNext) {
                     EmptyView()
@@ -73,20 +80,47 @@ struct tawaf: View {
                     Circle()
                         .stroke(Color.circlecolor, lineWidth: 40)
                         .frame(width: 280, height: 280)
-
+                    
                     Circle()
-                        .trim(from: 0, to: progress)
+                        .trim(from: 0, to: CGFloat(trackingManager.currentIndoorLaps))
                         .stroke(isTrackingPaused ? Color.stopgreeno : Color.greeno, style: StrokeStyle(lineWidth: 40, lineCap: .round))
                         .rotationEffect(.degrees(-90))
                         .frame(width: 280, height: 280)
                         .id(circleID)
                         .animation(.easeInOut(duration: 1.0), value: progress)
-
-                    Text(formattedEnglishNumber(lapCount))
+                    
+                    Text(formattedEnglishNumber(trackingManager.currentIndoorLaps))
                         .font(.system(size: 80, weight: .bold ,design: .rounded))
                         .foregroundColor(isTrackingPaused ? Color.stopgreeno : Color.greeno)
                 }
-                .environment(\.layoutDirection, .leftToRight)
+                .frame(height: 280)
+                
+                // Status indicators moved below the circle
+                VStack(spacing: 8) {
+                    // Status Indicator
+                    HStack {
+                        Circle()
+                            .fill(trackingManager.hasCrossedStartLine ? Color.green : Color.orange)
+                            .frame(width: 12, height: 12)
+                        Text(trackingManager.hasCrossedStartLine ? "On Track" : "Find Start Line")
+                            .font(.subheadline)
+                    }
+                    
+                    // Status Message
+                    Text(trackingManager.lapStatus)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                    
+                    // Start Line Alert
+                    if !trackingManager.startLineAlert.isEmpty {
+                        Text(trackingManager.startLineAlert)
+                            .font(.caption)
+                            .foregroundColor(.orange)
+                    }
+                }
+                .padding(.top, 20)
 
                 Spacer()
 
@@ -103,7 +137,13 @@ struct tawaf: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                 } else if showStartButton {
                     Button("Start") {
-                        startTimer()
+                        if trackingManager.isIndoorTrackingActive {
+                            stopIndoorTracking()
+                            showStartButton = true
+                        } else {
+                            startIndoorTracking()
+                            showStartButton = false
+                        }
                     }
                     .frame(width: 85, height: 40)
                     .font(.title.bold())
@@ -134,6 +174,12 @@ struct tawaf: View {
             }
             .navigationBarBackButtonHidden(true) // Hide the back button for this view
         }
+        
+//        Button("Insert Test") {
+//            let test = TawafData(date: .now, laps: 1, distance: 100, steps: 200, duration: 120)
+//            modelContext.insert(test)
+//            try? modelContext.save()
+//        }
     }
 
     func startTimer() {
@@ -182,7 +228,23 @@ struct tawaf: View {
         let seconds = timeElapsed % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
+    
+    
+    private func startIndoorTracking() {
+        print("startIndoorTracking at tawaf")
+        trackingManager.startIndoorTracking()
+        //showIndoorAlert = true
+    }
+
+    private func stopIndoorTracking() {
+        trackingManager.stopIndoorTracking()
+    }
 }
+ 
+
+
+
+
 
 #Preview {
     tawaf()

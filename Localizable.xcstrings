@@ -193,6 +193,9 @@
         }
       }
     },
+    "Find Start Line" : {
+
+    },
     "Focus intact" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -442,6 +445,9 @@
           }
         }
       }
+    },
+    "On Track" : {
+
     },
     "Resume" : {
       "localizations" : {

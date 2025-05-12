@@ -6,12 +6,29 @@
 //
 
 import SwiftUI
+import SwiftData
+import CoreMotion
+import WatchConnectivity
 
 @main
 struct Ashwaat0_1App: App {
+    let locationManager = LocationManager()
+    let trackingManager: TrackingManager
+    let watchConnectivityManager = WatchConnectivityManager.shared
+    
+    init() {
+        let modelContainer = try! ModelContainer(for: TawafData.self)
+        let modelContext = modelContainer.mainContext
+        self.trackingManager = TrackingManager(locationManager: locationManager, modelContext: modelContext)
+    }
+    
     var body: some Scene {
         WindowGroup {
-            AccessLocation()
+            //AccessLocation()
+            tawaf()
+                .environmentObject(locationManager)
+                .environmentObject(trackingManager)
+                .environmentObject(watchConnectivityManager)
         }
     }
 }
