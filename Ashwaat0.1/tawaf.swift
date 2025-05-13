@@ -96,6 +96,7 @@ struct tawaf: View {
                     }
                     .frame(width: 150, height: 40)
                     .font(.title.bold())
+                    .fontDesign(.rounded)
                     .foregroundColor(.white)
                     .padding(.horizontal, 15)
                     .padding(.vertical, 15)
@@ -107,7 +108,8 @@ struct tawaf: View {
                     }
                     .frame(width: 85, height: 40)
                     .font(.title.bold())
-                    .foregroundColor(.white)
+                    .fontDesign(.rounded)
+                    .foregroundColor(Color("Circlecolor"))
                     .padding(.horizontal, 50)
                     .padding(.vertical, 15)
                     .background(Color.greeno)
@@ -116,6 +118,7 @@ struct tawaf: View {
                     Text(formattedTime)
                         .frame(width: 85, height: 40)
                         .font(.title.bold())
+                        .fontDesign(.rounded)
                         .padding(.horizontal, 50)
                         .padding(.vertical, 15)
                         .background(Color.circlecolor)

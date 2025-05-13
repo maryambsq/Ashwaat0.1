@@ -73,9 +73,9 @@ struct TawafMain: View {
                                         Text("Get Started")
                                             .font(.headline)
                                             .fontWeight(.semibold)
-                                            .foregroundColor(Color("ButtonTextColor"))
+                                            .foregroundColor(Color("GetStartedButtonTextColor"))
                                             .frame(width: 185, height: 60)
-                                            .background(Color("SecondaryColor"))
+                                            .background(Color("GetStartedButton"))
                                             .cornerRadius(20)
                                             .fontDesign(.rounded)
 
