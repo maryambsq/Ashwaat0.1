@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct tawaf: View {
+    @AppStorage("finalLapDuration") var finalLapDuration: Int = 0
+    
     @State private var lapCount = 0
+    @State private var hasStartedTimer = false
     @State private var timeElapsed: Int = 0
     @State private var timer: Timer?
     @State private var isTrackingPaused = false
@@ -174,7 +177,20 @@ struct tawaf: View {
             .onDisappear {
                 timer?.invalidate()
             }
-            .navigationBarBackButtonHidden(true) // Hide the back button for this view
+            .onChange(of: trackingManager.hasCrossedStartLine) { crossed in
+                if crossed && !hasStartedTimer {
+                    hasStartedTimer = true
+                    startTimer()
+                }
+            }
+            .onChange(of: trackingManager.currentIndoorLaps) { laps in
+                if laps == 7 {
+                    finalLapDuration = timeElapsed
+                    timer?.invalidate()
+                    timer = nil
+                    navigateToNext = true
+                }
+            }            .navigationBarBackButtonHidden(true) // Hide the back button for this view
         }
         
         Button("Insert Test") {
@@ -197,19 +213,19 @@ struct tawaf: View {
                     progress = 1
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    lapCount += 1
-
-                    if lapCount == 6 {
-                        isTrackingPaused = true
-                        timer?.invalidate()
-                    }
-
-                    if lapCount == 7 {
-                        timer?.invalidate()
-                        navigateToNext = true // ✅ الانتقال التلقائي
-                    }
-                }
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//                    lapCount += 1
+//
+//                    if lapCount == 6 {
+//                        isTrackingPaused = true
+//                        timer?.invalidate()
+//                    }
+//
+//                    if lapCount == 7 {
+//                        timer?.invalidate()
+//                        navigateToNext = true // ✅ الانتقال التلقائي
+//                    }
+//                }
             }
         }
     }
