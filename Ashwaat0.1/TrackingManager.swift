@@ -48,53 +48,53 @@ class TrackingManager: ObservableObject {
     // Enhanced motion tracking variables
     private var isLapInProgress: Bool = false
     private var lapStartDistance: Double = 0.0
-    private var lastLapDistance: Double = 0.0
-    private var lapStartTime: Date?
-    private var lastLapTime: TimeInterval = 0.0
+//    private var lastLapDistance: Double = 0.0
+//    private var lapStartTime: Date?
+//    private var lastLapTime: TimeInterval = 0.0
     private var lastStepCount: Int = 0
     private var lastDistance: Double = 0.0
-    private var lastTurnDirection: Double = 0.0
+//    private var lastTurnDirection: Double = 0.0
     private var turnCount: Int = 0
     private var lastTurnTime: Date?
-    private var lastAcceleration: CMAcceleration?
+//    private var lastAcceleration: CMAcceleration?
     private var stepLength: Double = 0.7
     private var stepConfidence: Double = 0.0
     
     // Rotation bounds and normalization
     private let maxRotation: Double = 2.0 * .pi * 100 // Maximum allowed rotation (100 full circles)
     private let minRotation: Double = -2.0 * .pi * 100 // Minimum allowed rotation
-    private let rotationNormalizationFactor: Double = 2.0 * .pi // Normalize to one full circle
+//    private let rotationNormalizationFactor: Double = 2.0 * .pi // Normalize to one full circle
     
     // Kalman filter variables for position estimation
     private var positionEstimate: (x: Double, y: Double) = (0.0, 0.0)
     private var positionCovariance: Double = 1.0
-    private var processNoise: Double = 0.1
-    private var measurementNoise: Double = 0.1
+//    private var processNoise: Double = 0.1
+//    private var measurementNoise: Double = 0.1
     
     // Motion history for pattern recognition
     private var motionHistory: [(acceleration: CMAcceleration, attitude: CMAttitude, timestamp: Date)] = []
-    private let motionHistorySize: Int = 10
+//    private let motionHistorySize: Int = 10
     
     // Step detection thresholds
     private let minVerticalMovement: Double = 0.02
-    private let minTotalAcceleration: Double = 0.3
-    private let minAccelChange: Double = 0.01
-    private let minTimeBetweenSteps: TimeInterval = 0.05
-    private let minPitchChange: Double = 0.1
-    private let minRollChange: Double = 0.1
+//    private let minTotalAcceleration: Double = 0.3
+//    private let minAccelChange: Double = 0.01
+//    private let minTimeBetweenSteps: TimeInterval = 0.05
+//    private let minPitchChange: Double = 0.1
+//    private let minRollChange: Double = 0.1
     private let stepPatternThreshold: Double = 0.5
     
     // Quaternion-based rotation tracking
-    private var currentQuaternion: simd_quatf = simd_quatf(ix: 0, iy: 0, iz: 0, r: 1)
-    private var lastQuaternion: simd_quatf = simd_quatf(ix: 0, iy: 0, iz: 0, r: 1)
-    private var accumulatedRotation: Double = 0.0
-    private var lastYaw: Double = 0.0
+//    private var currentQuaternion: simd_quatf = simd_quatf(ix: 0, iy: 0, iz: 0, r: 1)
+//    private var lastQuaternion: simd_quatf = simd_quatf(ix: 0, iy: 0, iz: 0, r: 1)
+//    private var accumulatedRotation: Double = 0.0
+//    private var lastYaw: Double = 0.0
     private var rotationHistory: [Double] = []
     
     // Position tracking variables
     private var currentAngle: Double = 0.0
     private var lastPositionUpdate: Date?
-    private var positionHistory: [(x: Double, y: Double)] = []
+//    private var positionHistory: [(x: Double, y: Double)] = []
     private var kaabaCenter: (x: Double, y: Double) = (0.0, 0.0)
     private let kaabaRadius: Double = 7.5 // meters (half of circumference)
     
@@ -105,32 +105,32 @@ class TrackingManager: ObservableObject {
     private var headingHistory: [Double] = []
     
     // Kaaba dimensions and thresholds
-    private let kaabaCircumference: Double = 15.0 // meters
+//    private let kaabaCircumference: Double = 15.0 // meters
     private let minLapDistance: Double = 20.0 // Minimum distance required for a valid lap (meters)
-    private let lapDetectionThreshold: Double = 10.0 // Distance threshold for start line detection
+//    private let lapDetectionThreshold: Double = 10.0 // Distance threshold for start line detection
     private let minStepsPerLap: Int = 5
-    private let turnDetectionThreshold: Double = 0.8
-    private let minTimeBetweenTurns: TimeInterval = 2.0
-    private let minTimeBetweenLaps: TimeInterval = 10.0
+//    private let turnDetectionThreshold: Double = 0.8
+//    private let minTimeBetweenTurns: TimeInterval = 2.0
+//    private let minTimeBetweenLaps: TimeInterval = 10.0
     private let maxLaps: Int = 7
-    private let requiredRotation: Double = 2.0 * .pi // Full circle in radians
-    private let earlyLapThreshold: Double = 0.8 // 80% of required rotation
-    private let lateLapThreshold: Double = 1.2 // 120% of required rotation
-    private let rotationSmoothingFactor: Double = 0.1 // Smooth rotation changes
+//    private let requiredRotation: Double = 2.0 * .pi // Full circle in radians
+//    private let earlyLapThreshold: Double = 0.8 // 80% of required rotation
+//    private let lateLapThreshold: Double = 1.2 // 120% of required rotation
+//    private let rotationSmoothingFactor: Double = 0.1 // Smooth rotation changes
     
     // New variables for enhanced cycle detection
-    private var cycleStartAngle: Double = 0.0
+//    private var cycleStartAngle: Double = 0.0
     private var cycleProgress: Double = 0.0
-    private var lastCycleProgress: Double = 0.0
-    private var cycleDirection: Double = 0.0
-    private var cycleStartTime: Date?
-    private var cycleStartDistance: Double = 0.0
-    private var cycleStartSteps: Int = 0
-    private var isCycleInProgress: Bool = false
-    private var cycleCrossings: Int = 0
-    private let minCycleProgress: Double = 0.9 // 90% of full circle required
-    private let maxCycleProgress: Double = 1.1 // 110% of full circle allowed
-    
+//    private var lastCycleProgress: Double = 0.0
+//    private var cycleDirection: Double = 0.0
+//    private var cycleStartTime: Date?
+//    private var cycleStartDistance: Double = 0.0
+//    private var cycleStartSteps: Int = 0
+//    private var isCycleInProgress: Bool = false
+//    private var cycleCrossings: Int = 0
+//    private let minCycleProgress: Double = 0.9 // 90% of full circle required
+//    private let maxCycleProgress: Double = 1.1 // 110% of full circle allowed
+//    
     // Kaaba center coordinates
     private let kaabaCenterLatitude: Double = 24.78676046638857
     private let kaabaCenterLongitude: Double = 46.797685303859474
@@ -142,26 +142,26 @@ class TrackingManager: ObservableObject {
     
     
     private var lastStartLineCrossing: CLLocation? = nil
-    private var lastLapRotation: Double = 0.0
-    private var completedRotations: Int = 0
-    private var lastAngle: Double = 0.0
+//    private var lastLapRotation: Double = 0.0
+//    private var completedRotations: Int = 0
+//    private var lastAngle: Double = 0.0
     
     // Added for motion-based step detection
     private var lastStepTime: Date?
-    private var lastAttitude: CMAttitude?
+//    private var lastAttitude: CMAttitude?
     
     // Start line detection variables
-    private let startLineAngle: Double = 0.0 // Start line at 0 degrees
-    private let startLineThreshold: Double = 0.2 // Increased threshold to 0.2 radians (~11.5 degrees)
-    private var lastStartLineDistance: Double = 0.0
-    private var startLineCrossingCount: Int = 0
+//    private let startLineAngle: Double = 0.0 // Start line at 0 degrees
+//    private let startLineThreshold: Double = 0.2 // Increased threshold to 0.2 radians (~11.5 degrees)
+//    private var lastStartLineDistance: Double = 0.0
+//    private var startLineCrossingCount: Int = 0
     private var lastStartLineCrossingTime: Date?
     private let minTimeBetweenCrossings: TimeInterval = 1.0 // Reduced to 1 second
-    private var lastCrossingDirection: Double = 0.0 // Track last crossing direction
+//    private var lastCrossingDirection: Double = 0.0 // Track last crossing direction
     
     // Constants for Tawaf tracking
-    private let raceRadiusMeters: Double = 20.0 // Radius of the circle
-    private let startLineLength: Double = 5.0 // Length of the start line
+//    private let raceRadiusMeters: Double = 20.0 // Radius of the circle
+//    private let startLineLength: Double = 5.0 // Length of the start line
     private var totalLapDistance: Double = 0.0
     private var hasStartedLap: Bool = false
     
