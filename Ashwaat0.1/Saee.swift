@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct Saee: View {
+    @Environment(\.dismiss) var dismiss 
     @State private var lapCount = 0
     @State private var timeElapsed: Int = 0
     @State private var timer: Timer?
@@ -34,7 +35,7 @@ struct Saee: View {
 
                     // ✅ زر السهم لتفعيل الرجوع
                     Button(action: {
-                        navigateToNext = true
+                        dismiss()
                     }) {
                         Image(systemName: Locale.characterDirection(forLanguage: Locale.current.language.languageCode?.identifier ?? "") == .rightToLeft ? "chevron.right" : "chevron.left")
                             .font(.system(size: 34, weight: .medium))

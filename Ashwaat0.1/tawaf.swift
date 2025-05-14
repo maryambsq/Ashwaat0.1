@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct tawaf: View {
+    @Environment(\.dismiss) var dismiss // ✅ استخدام الديسميس
+
     @State private var lapCount = 0
     @State private var timeElapsed: Int = 0
     @State private var timer: Timer?
     @State private var isTrackingPaused = false
     @State private var showStartButton = true
     @State private var navigateToNext = false
-    @State private var backToHome = false // ✅ جديد: متغير الرجوع للصفحة الرئيسية
 
     @State private var progress: CGFloat = 0
     @State private var circleID = UUID()
@@ -28,17 +29,12 @@ struct tawaf: View {
                     Spacer()
                     Spacer()
 
-                    // ✅ NavigationLink مخفي للرجوع إلى الصفحة الرئيسية
-                    NavigationLink(destination: TawafMain(), isActive: $backToHome) {
-                        EmptyView()
-                    }
-
-                    // ✅ زر السهم لتفعيل الرجوع
+                    // ✅ زر الرجوع باستخدام dismiss
                     Button(action: {
-                        backToHome = true
+                        dismiss()
                     }) {
                         Image(systemName: Locale.characterDirection(forLanguage: Locale.current.language.languageCode?.identifier ?? "") == .rightToLeft ? "chevron.right" : "chevron.left")
-                            .font(.system(size: 34, weight: .medium))
+                            .font(.system(size: 40, weight: .medium))
                             .foregroundColor(.gray.opacity(0.5))
                             .padding(.trailing)
                     }
@@ -48,11 +44,10 @@ struct tawaf: View {
                     Spacer()
                     Spacer()
                     Text("Tawaf")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .fontDesign(.rounded)
+                        .font(.system(size: 33, weight: .bold, design: .rounded))
                         .foregroundColor(.greeno)
-                        .padding(.trailing, 20)
+                        .padding(.trailing, 10)
+                    Spacer()
                     Spacer()
                     Spacer()
                     Spacer()
@@ -72,18 +67,18 @@ struct tawaf: View {
                 ZStack {
                     Circle()
                         .stroke(Color.circlecolor, lineWidth: 40)
-                        .frame(width: 280, height: 280)
+                        .frame(width: 300, height: 300)
 
                     Circle()
                         .trim(from: 0, to: progress)
                         .stroke(isTrackingPaused ? Color.stopgreeno : Color.greeno, style: StrokeStyle(lineWidth: 40, lineCap: .round))
                         .rotationEffect(.degrees(-90))
-                        .frame(width: 280, height: 280)
+                        .frame(width: 300, height: 300)
                         .id(circleID)
                         .animation(.easeInOut(duration: 1.0), value: progress)
 
                     Text(formattedEnglishNumber(lapCount))
-                        .font(.system(size: 80, weight: .bold ,design: .rounded))
+                        .font(.system(size: 88, weight: .bold ,design: .rounded))
                         .foregroundColor(isTrackingPaused ? Color.stopgreeno : Color.greeno)
                 }
                 .environment(\.layoutDirection, .leftToRight)
@@ -94,33 +89,27 @@ struct tawaf: View {
                     Button("Resume") {
                         resumeAfterPause()
                     }
-                    .frame(width: 150, height: 40)
                     .font(.title.bold())
-                    .fontDesign(.rounded)
                     .foregroundColor(.white)
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 15)
+                    .padding(.horizontal, 60)
+                    .padding(.vertical, 10)
                     .background(Color.greeno)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                 } else if showStartButton {
                     Button("Start") {
                         startTimer()
                     }
-                    .frame(width: 85, height: 40)
                     .font(.title.bold())
-                    .fontDesign(.rounded)
-                    .foregroundColor(Color("Circlecolor"))
-                    .padding(.horizontal, 50)
-                    .padding(.vertical, 15)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 60)
+                    .padding(.vertical, 10)
                     .background(Color.greeno)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                 } else {
                     Text(formattedTime)
-                        .frame(width: 85, height: 40)
                         .font(.title.bold())
-                        .fontDesign(.rounded)
-                        .padding(.horizontal, 50)
-                        .padding(.vertical, 15)
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 10)
                         .background(Color.circlecolor)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .foregroundColor(Color.lightgreeno)
@@ -190,4 +179,3 @@ struct tawaf: View {
 #Preview {
     tawaf()
 }
-
