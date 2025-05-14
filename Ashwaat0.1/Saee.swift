@@ -69,9 +69,9 @@ struct Saee: View {
                 Spacer()
 
                 // ✅ NavigationLink للانتقال التلقائي بعد آخر شوط
-                NavigationLink(destination: Summary(), isActive: $navigateToNext) {
-                    EmptyView()
-                }
+//                NavigationLink(destination: Summary(), isActive: $navigateToNext) {
+//                    EmptyView()
+//                }
 
                 ZStack {
                     Circle()

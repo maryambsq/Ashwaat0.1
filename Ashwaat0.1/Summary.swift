@@ -9,7 +9,10 @@ import SwiftUI
 
 struct Summary: View {
     @State private var navigateToSai = false
-
+    let steps: Int
+    let distance: Double
+    let laps: Int
+    //let duration :
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
@@ -82,7 +85,7 @@ struct Summary: View {
                                         .scaledToFit()
                                         .frame(width: 40, height: 40)
 
-                                    Text("you took 4000 steps")
+                                    Text("you took \(steps) steps")
                                         .foregroundColor(Color("AccentColor"))
                                         .font(.body)
                                         .fontWeight(.bold)
@@ -138,6 +141,6 @@ struct Summary: View {
 }
 
 #Preview {
-    Summary()
+    Summary(steps: 0, distance: 0.0, laps: 0)
 }
 
