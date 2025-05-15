@@ -34,6 +34,7 @@ class TrackingManager: ObservableObject {
 
     // Define Kaaba center and start line globally or in your init
     private var previousAngle: Double?
+    private var lastDisplayedProgress: Double = 0.0
     private let kaabaCoordinate = CLLocationCoordinate2D(latitude: 24.860810237081548, longitude: 46.727509656759025) // Demo coords
     private let startLineCoordinate = CLLocationCoordinate2D(latitude: 24.86064, longitude: 46.72768) // Demo coords
 
@@ -42,15 +43,75 @@ class TrackingManager: ObservableObject {
     
     // Evaluate angular movement with location updates
     private var cancellables = Set<AnyCancellable>()
+    
+    // Estimate circular lap progress using indoor motion
+    private var motionLapDistance: Double = 0.0
+    private let fallbackLapLength: Double = 100.0
+    private func updateLapProgressUsingMotion(stepCount: Int) {
+        // Estimate distance using step count and step length
+        let estimatedDistance = Double(stepCount - lastStepCount) * stepLength
+        motionLapDistance += estimatedDistance
+        lastStepCount = stepCount
+
+        // Update lap progress
+        let progress = min(motionLapDistance / fallbackLapLength, 1.0)
+        
+        // Smooth rise in progress
+        let percent = progress * 100.0
+        lapProgress = max(percent, lastDisplayedProgress)
+        lastDisplayedProgress = lapProgress
+        
+        if progress >= 1.0 {
+            currentIndoorLaps += 1
+            motionLapDistance = 0
+            lapProgress = 0
+            print("👣 Motion-based lap completed. Total laps: \(currentIndoorLaps)")
+        }
+    }
 
     // Converts coordinate to vector relative to center
     private func angleFromKaaba(to location: CLLocationCoordinate2D) -> Double {
-        let dx = location.longitude - kaabaCoordinate.longitude
-        let dy = location.latitude - kaabaCoordinate.latitude
+        let dx = location.longitude - kaabaCenterLongitude
+        let dy = location.latitude - kaabaCenterLatitude
         return atan2(dy, dx)
     }
     
+    private var previousUserAngle: Double?
+
+    private func checkStartLineCrossing(currentLocation: CLLocationCoordinate2D) {
+        let userAngle = angleFromKaaba(to: currentLocation)
+        let startLineAngle = angleFromKaaba(to: CLLocationCoordinate2D(
+            latitude: startLineLatitude,
+            longitude: startLineLongitude
+        ))
+
+        if let previous = previousUserAngle {
+            let crossed = (previous < startLineAngle && userAngle >= startLineAngle) ||
+                          (previous > startLineAngle && userAngle <= startLineAngle)
+
+            if crossed && !hasCrossedStartLine {
+                hasCrossedStartLine = true
+                print("🚀 User crossed start line. Lap tracking can now begin.")
+            }
+        }
+
+        previousUserAngle = userAngle
+    }
+    
     func updateLapProgress(currentLocation: CLLocationCoordinate2D) {
+        
+        if useMotionFallback {
+            if let stepCount = currentIndoorSteps as? Int {
+                updateLapProgressUsingMotion(stepCount: stepCount)
+            }
+            return
+        }
+
+        if !hasCrossedStartLine {
+            checkStartLineCrossing(currentLocation: currentLocation)
+            return
+        }
+        
         // Only track progress if start line has been crossed
         guard hasCrossedStartLine else {
             checkStartLineCrossing(currentLocation: currentLocation)
@@ -73,6 +134,8 @@ class TrackingManager: ObservableObject {
             if abs(accumulatedAngle) >= 2 * .pi {
                 currentIndoorLaps += 1
                 accumulatedAngle = 0
+                lapProgress = 0
+                lastDisplayedProgress = 0
                 print("✅ Lap Completed! Total: \(currentIndoorLaps)")
             }
         }
@@ -85,11 +148,12 @@ class TrackingManager: ObservableObject {
         self.locationManager = locationManager
         self.modelContext = modelContext
         
-        // Observe live location updates
+        // Observe live location updates and check GPS signal
         locationManager.$currentUserLocation
-            .compactMap { $0?.coordinate }
-            .sink { [weak self] coordinate in
-                self?.updateLapProgress(currentLocation: coordinate)
+            .compactMap { $0 }
+            .sink { [weak self] location in
+                self?.evaluateGPSQuality(from: location)
+                self?.updateLapProgress(currentLocation: location.coordinate)
             }
             .store(in: &cancellables)
     }
@@ -245,16 +309,16 @@ class TrackingManager: ObservableObject {
         )
     }
     
-    private func checkStartLineCrossing(currentLocation: CLLocationCoordinate2D) {
-        let startLine = CLLocation(latitude: startLineCoordinate.latitude, longitude: startLineCoordinate.longitude)
-        let userLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
-        let distance = userLocation.distance(from: startLine)
-
-        if distance < 5.0 { // within 5 meters of the start line
-            hasCrossedStartLine = true
-            print("🚀 Start line crossed. Tracking begins.")
-        }
-    }
+//    private func checkStartLineCrossing(currentLocation: CLLocationCoordinate2D) {
+//        let startLine = CLLocation(latitude: startLineCoordinate.latitude, longitude: startLineCoordinate.longitude)
+//        let userLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+//        let distance = userLocation.distance(from: startLine)
+//
+//        if distance < 5.0 { // within 5 meters of the start line
+//            hasCrossedStartLine = true
+//            print("🚀 Start line crossed. Tracking begins.")
+//        }
+//    }
     
     
     let summaryNavigationDelay: TimeInterval = 5 // Change to 5 for faster transition if needed
@@ -282,6 +346,24 @@ class TrackingManager: ObservableObject {
     // Combined flag to enable/disable Tawaf tracking
     var isTrackingAllowed: Bool {
         return isInHaramRegion && isInTawafZone
+    }
+    
+    // Measuring poor GPS to activate motion tracking fallback
+    private func evaluateGPSQuality(from location: CLLocation) {
+        let accuracy = location.horizontalAccuracy
+
+        if accuracy < 0 {
+            // Invalid reading
+            return
+        }
+
+        if accuracy > 20 && !useMotionFallback {
+            useMotionFallback = true
+            print("📉 GPS signal weak. Switching to motion fallback.")
+        } else if accuracy <= 10 && useMotionFallback {
+            useMotionFallback = false
+            print("📡 GPS signal recovered. Resuming normal tracking.")
+        }
     }
     
     private func linesIntersect(p1: CLLocationCoordinate2D, p2: CLLocationCoordinate2D,
