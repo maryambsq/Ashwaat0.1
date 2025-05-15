@@ -34,13 +34,52 @@
       }
     },
     "%lld%%" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%% %lld"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        }
+      }
     },
     "⚠️ You left the Tawaf zone. Tracking paused." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ لقد غادرت منطقة الطواف. تم إيقاف التتبع مؤقتًا."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ آپ نے طواف کا علاقہ چھوڑ دیا۔ ٹریکنگ روک دی گئی۔"
+          }
+        }
+      }
     },
     "📍 Tawaf Debug Info" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "📍معلومات تصحيح أخطاء الطواف"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "📍طواف ڈیبگ کی معلومات"
+          }
+        }
+      }
     },
     "Add Item" : {
       "extractionState" : "stale",
@@ -228,7 +267,20 @@
       }
     },
     "Find Start Line" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "العثور على خط البداية"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شروع لائن تلاش کریں"
+          }
+        }
+      }
     },
     "Focus intact" : {
       "extractionState" : "stale",
@@ -289,7 +341,20 @@
       }
     },
     "Getting location..." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاري الحصول على الموقع…"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقام حاصل کر رہا ہے۔…"
+          }
+        }
+      }
     },
     "Item at %@" : {
       "extractionState" : "stale",
@@ -534,13 +599,52 @@
       }
     },
     "Meters" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أمتار"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "میٹر"
+          }
+        }
+      }
     },
     "Mode: %@" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الوضع"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موڈ %@"
+          }
+        }
+      }
     },
     "On Track" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "على المسار الصحيح"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ٹریک پر"
+          }
+        }
+      }
     },
     "Resume" : {
       "localizations" : {
@@ -667,7 +771,20 @@
       }
     },
     "Steps" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خطوات"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قدم"
+          }
+        }
+      }
     },
     "Tawaf" : {
       "localizations" : {
@@ -698,7 +815,20 @@
       }
     },
     "Tawaf Region: %@" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منطقة الطواف: %@"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طواف کا علاقہ: %@"
+          }
+        }
+      }
     },
     "To accurately track your Tawaf and Sa'i, please allow location access while using the app." : {
       "extractionState" : "manual",
@@ -759,7 +889,20 @@
       }
     },
     "You completed Tawaaf!" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أتممت الطواف بنجاح!"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آپ نے طواف مکمل کر لیا"
+          }
+        }
+      }
     },
     "you completed tawaf" : {
       "extractionState" : "manual",
@@ -791,7 +934,20 @@
       }
     },
     "You spent %@." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لقد قضيت %@"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آپ نے  %@ صرف کیے\n"
+          }
+        }
+      }
     },
     "you spent 40 min" : {
       "extractionState" : "stale",
@@ -852,7 +1008,20 @@
       }
     },
     "You took %lld steps." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لقد اتخذت %lld خطوات"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آپ نے %lld قدم اٹھائے"
+          }
+        }
+      }
     },
     "you took 4000 steps" : {
       "extractionState" : "stale",
