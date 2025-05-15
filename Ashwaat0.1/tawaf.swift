@@ -491,7 +491,7 @@ struct tawaf: View {
                 }
             }
             .onChange(of: trackingManager.currentIndoorLaps) { laps in
-                if laps == 7 {
+                if laps > 7 {
                     finalLapDuration = timeElapsed
                     timer?.invalidate()
                     timer = nil
