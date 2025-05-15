@@ -297,7 +297,7 @@ struct tawaf: View {
     @State private var navigateToNext = false
     @State private var backToHome = false
 
-    @State private var progress: CGFloat = 0
+//    @State private var progress: CGFloat = 0
     @State private var circleID = UUID()
 
     @Environment(\.modelContext) var modelContext
@@ -350,6 +350,8 @@ struct tawaf: View {
                 Spacer()
 
                 ZStack {
+                    let progress = trackingManager.lapProgress / 100 // Normalize to 0–1
+
                     Circle()
                         .stroke(Color.circlecolor, lineWidth: 40)
                         .frame(width: 280, height: 280)
@@ -407,6 +409,9 @@ struct tawaf: View {
                             .font(.caption)
                             .foregroundColor(.gray)
                     }
+                    Text("\(Int(trackingManager.lapProgress))%")
+                        .font(.title)
+                        .bold()
                     Text("Mode: \(trackingManager.useMotionFallback ? "Indoor (Motion)" : "Outdoor (GPS)")")
                         .font(.caption)
                         .foregroundColor(trackingManager.useMotionFallback ? .orange : .green)
@@ -503,12 +508,12 @@ struct tawaf: View {
                 timeElapsed += 1
 
                 if timeElapsed % 2 == 0 && lapCount < 7 {
-                    progress = 0
+//                    progress = 0
                     circleID = UUID()
 
-                    withAnimation(.easeInOut(duration: 1.0)) {
-                        progress = 1
-                    }
+//                    withAnimation(.easeInOut(duration: 1.0)) {
+//                        progress = 1
+//                    }
 
     //                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
     //                    lapCount += 1

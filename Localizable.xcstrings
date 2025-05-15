@@ -33,6 +33,9 @@
         }
       }
     },
+    "%lld%%" : {
+
+    },
     "⚠️ You left the Tawaf zone. Tracking paused." : {
 
     },
@@ -761,7 +764,7 @@
         }
       }
     },
-    "you completed Tawaaf" : {
+    "You completed Tawaaf!" : {
 
     },
     "you completed tawaf" : {
@@ -793,7 +796,7 @@
         }
       }
     },
-    "you spent %@" : {
+    "You spent %@." : {
 
     },
     "you spent 40 min" : {
@@ -854,7 +857,7 @@
         }
       }
     },
-    "you took %lld steps" : {
+    "You took %lld steps." : {
 
     },
     "you took 4000 steps" : {

@@ -34,11 +34,14 @@ class TrackingManager: ObservableObject {
 
     // Define Kaaba center and start line globally or in your init
     private var previousAngle: Double?
-    private let kaabaCoordinate = CLLocationCoordinate2D(latitude: 24.860870496480675, longitude: 24.860870496480675) // Demo coords
-    private let startLineCoordinate = CLLocationCoordinate2D(latitude: 24.860872072775535, longitude: 46.72800847065588) // Demo coords
+    private let kaabaCoordinate = CLLocationCoordinate2D(latitude: 24.860810237081548, longitude: 46.727509656759025) // Demo coords
+    private let startLineCoordinate = CLLocationCoordinate2D(latitude: 24.86064, longitude: 46.72768) // Demo coords
 
     // Track progress angle
     private var accumulatedAngle: Double = 0.0
+    
+    // Evaluate angular movement with location updates
+    private var cancellables = Set<AnyCancellable>()
 
     // Converts coordinate to vector relative to center
     private func angleFromKaaba(to location: CLLocationCoordinate2D) -> Double {
@@ -48,6 +51,12 @@ class TrackingManager: ObservableObject {
     }
     
     func updateLapProgress(currentLocation: CLLocationCoordinate2D) {
+        // Only track progress if start line has been crossed
+        guard hasCrossedStartLine else {
+            checkStartLineCrossing(currentLocation: currentLocation)
+            return
+        }
+
         let currentAngle = angleFromKaaba(to: currentLocation)
 
         if let last = previousAngle {
@@ -75,6 +84,14 @@ class TrackingManager: ObservableObject {
     init(locationManager: LocationManager, modelContext: ModelContext? = nil) {
         self.locationManager = locationManager
         self.modelContext = modelContext
+        
+        // Observe live location updates
+        locationManager.$currentUserLocation
+            .compactMap { $0?.coordinate }
+            .sink { [weak self] coordinate in
+                self?.updateLapProgress(currentLocation: coordinate)
+            }
+            .store(in: &cancellables)
     }
     
     @Published var isIndoorTrackingActive = false
@@ -226,6 +243,17 @@ class TrackingManager: ObservableObject {
             latitude: startLineLatitude,
             longitude: startLineLongitude
         )
+    }
+    
+    private func checkStartLineCrossing(currentLocation: CLLocationCoordinate2D) {
+        let startLine = CLLocation(latitude: startLineCoordinate.latitude, longitude: startLineCoordinate.longitude)
+        let userLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        let distance = userLocation.distance(from: startLine)
+
+        if distance < 5.0 { // within 5 meters of the start line
+            hasCrossedStartLine = true
+            print("🚀 Start line crossed. Tracking begins.")
+        }
     }
     
     
