@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TawafMain: View {
+    @AppStorage("startTawaafFromSiri") var startTawaafFromSiri: Bool = false
     @State private var navigateToTawaf = false
     @EnvironmentObject var trackingManager: TrackingManager
     @EnvironmentObject var locationManager: LocationManager
@@ -119,6 +120,12 @@ struct TawafMain: View {
                         
                         Spacer()
                     }
+                }
+            }
+            .onChange(of: startTawaafFromSiri) { value in
+                if value {
+                    navigateToTawaf = true
+                    startTawaafFromSiri = false
                 }
             }
             .navigationBarBackButtonHidden(true)

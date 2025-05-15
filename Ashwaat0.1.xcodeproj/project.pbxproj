@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		327123F02DCC80FF00CA17D3 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 327123EF2DCC80FF00CA17D3 /* Localizable.xcstrings */; };
+		32C614BC2DD6815A00B84029 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C614BB2DD6815A00B84029 /* AppIntents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,8 @@
 		3258FA732DCBD78F00413C98 /* Ashwaat0.1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ashwaat0.1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3258FA7D2DCBD78F00413C98 /* Ashwaat0.1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ashwaat0.1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		327123EF2DCC80FF00CA17D3 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		32C614BB2DD6815A00B84029 /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
+		32C614BD2DD68F5600B84029 /* Ashwaat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ashwaat.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -80,6 +83,8 @@
 		3258FA5A2DCBD78E00413C98 = {
 			isa = PBXGroup;
 			children = (
+				32C614BD2DD68F5600B84029 /* Ashwaat.entitlements */,
+				32C614BB2DD6815A00B84029 /* AppIntents.swift */,
 				3258FA652DCBD78E00413C98 /* Ashwaat0.1 */,
 				3258FA762DCBD78F00413C98 /* Ashwaat0.1Tests */,
 				3258FA802DCBD78F00413C98 /* Ashwaat0.1UITests */,
@@ -243,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C614BC2DD6815A00B84029 /* AppIntents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +406,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Ashwaat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ashwaat0.1/Preview Content\"";
@@ -420,7 +427,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Maryam.Ashwaat0-1";
+				PRODUCT_BUNDLE_IDENTIFIER = Maryam.Ashwaat.intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -433,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Ashwaat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ashwaat0.1/Preview Content\"";
@@ -453,7 +461,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Maryam.Ashwaat0-1";
+				PRODUCT_BUNDLE_IDENTIFIER = Maryam.Ashwaat.intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -34,6 +34,7 @@
       }
     },
     "%lld%%" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -62,6 +63,7 @@
       }
     },
     "⚠️ You left the Tawaf zone. Tracking paused." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -90,6 +92,7 @@
       }
     },
     "📍 Tawaf Debug Info" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -116,6 +119,12 @@
           }
         }
       }
+    },
+    "📍 You are inside the allowed area. Tawaaf has started in Ashwaat." : {
+
+    },
+    "🚫 You're not currently inside the Tawaaf zone. Please move into the area to begin." : {
+
     },
     "Add Item" : {
       "extractionState" : "stale",
@@ -243,6 +252,9 @@
           }
         }
       }
+    },
+    "Begin tracking Tawaaf laps if inside the allowed area." : {
+
     },
     "counting your" : {
       "extractionState" : "stale",
@@ -389,6 +401,7 @@
       }
     },
     "Getting location..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -659,6 +672,7 @@
       }
     },
     "Meters" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -687,6 +701,7 @@
       }
     },
     "Mode: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -866,7 +881,11 @@
         }
       }
     },
+    "Start Tawaaf" : {
+
+    },
     "Steps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -923,6 +942,7 @@
       }
     },
     "Tawaf Region: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
