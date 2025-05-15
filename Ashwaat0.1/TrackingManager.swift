@@ -35,8 +35,8 @@ class TrackingManager: ObservableObject {
     // Define Kaaba center and start line globally or in your init
     private var previousAngle: Double?
     private var lastDisplayedProgress: Double = 0.0
-    private let kaabaCoordinate = CLLocationCoordinate2D(latitude: 24.860810237081548, longitude: 46.727509656759025) // Demo coords
-    private let startLineCoordinate = CLLocationCoordinate2D(latitude: 24.86064, longitude: 46.72768) // Demo coords
+    private let kaabaCoordinate = CLLocationCoordinate2D(latitude: 24.860870496480675, longitude: 46.7282289611649) // Demo coords
+    private let startLineCoordinate = CLLocationCoordinate2D(latitude: 24.860872072775535, longitude: 46.72800847065588) // Demo coords
 
     // Track progress angle
     private var accumulatedAngle: Double = 0.0
@@ -256,13 +256,13 @@ class TrackingManager: ObservableObject {
 //    private let maxCycleProgress: Double = 1.1 // 110% of full circle allowed
 //    
     // Kaaba center coordinates
-    private let kaabaCenterLatitude: Double = 24.860810237081548
-    private let kaabaCenterLongitude: Double = 46.727509656759025
-    private let startLineLatitude: Double = 24.86064
-    private let startLineLongitude: Double = 46.72768
+    private let kaabaCenterLatitude: Double = 24.860870496480675
+    private let kaabaCenterLongitude: Double = 46.7282289611649
+    private let startLineLatitude: Double = 24.860872072775535
+    private let startLineLongitude: Double = 46.72800847065588
     
-    private let startLinePointA = CLLocationCoordinate2D(latitude: 24.860810237081548, longitude: 46.727509656759025)
-    private let startLinePointB = CLLocationCoordinate2D(latitude: 24.86064, longitude: 46.72768)
+    private let startLinePointA = CLLocationCoordinate2D(latitude: 24.860870496480675, longitude: 46.7282289611649)
+    private let startLinePointB = CLLocationCoordinate2D(latitude: 24.860872072775535, longitude: 46.72800847065588)
     
     
     private var lastStartLineCrossing: CLLocation? = nil

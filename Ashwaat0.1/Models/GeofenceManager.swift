@@ -30,7 +30,7 @@ final class GeofenceMainManager: NSObject, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
 
         // Masjid al-Haram
-        addRegion(identifier: "haram_main", center: CLLocationCoordinate2D(latitude: 24.860810237081548, longitude: 46.727509656759025), radius: 150)
+        addRegion(identifier: "haram_main", center: CLLocationCoordinate2D(latitude: 24.860870496480675, longitude: 46.7282289611649), radius: 150)
 
         // Tawaf Zones
         addRegion(identifier: "tawaf_ground", center: tawafCenter, radius: 20)
@@ -49,7 +49,7 @@ final class GeofenceMainManager: NSObject, CLLocationManagerDelegate {
     }
 
     private var tawafCenter: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: 24.860810237081548, longitude: 46.727509656759025)
+        return CLLocationCoordinate2D(latitude: 24.860870496480675, longitude: 46.7282289611649)
     }
 
     private func addRegion(identifier: String, center: CLLocationCoordinate2D, radius: CLLocationDistance) {
