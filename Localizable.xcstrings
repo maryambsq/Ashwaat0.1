@@ -761,6 +761,9 @@
         }
       }
     },
+    "you completed Tawaaf" : {
+
+    },
     "you completed tawaf" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -790,7 +793,11 @@
         }
       }
     },
+    "you spent %@" : {
+
+    },
     "you spent 40 min" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

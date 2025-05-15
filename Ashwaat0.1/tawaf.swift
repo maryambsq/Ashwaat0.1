@@ -286,7 +286,10 @@
 import SwiftUI
 
 struct tawaf: View {
+    @AppStorage("finalLapDuration") var finalLapDuration: Int = 0
+
     @State private var lapCount = 0
+    @State private var hasStartedTimer = false
     @State private var timeElapsed: Int = 0
     @State private var timer: Timer?
     @State private var isTrackingPaused = false
@@ -352,12 +355,15 @@ struct tawaf: View {
                         .frame(width: 280, height: 280)
 
                     Circle()
-                        .trim(from: 0, to: CGFloat(trackingManager.currentIndoorLaps))
+//                        .trim(from: 0, to: CGFloat(trackingManager.currentIndoorLaps))
+                        .trim(from: 0, to: trackingManager.lapProgress / 100)
                         .stroke(isTrackingPaused ? Color.stopgreeno : Color.greeno, style: StrokeStyle(lineWidth: 40, lineCap: .round))
                         .rotationEffect(.degrees(-90))
                         .frame(width: 280, height: 280)
                         .id(circleID)
-                        .animation(.easeInOut(duration: 1.0), value: progress)
+//                        .animation(.easeInOut(duration: 1.0), value: progress)
+                        .animation(.easeInOut(duration: 1.0), value: trackingManager.lapProgress)
+
 
                     Text(formattedEnglishNumber(trackingManager.currentIndoorLaps))
                         .font(.system(size: 80, weight: .bold ,design: .rounded))
@@ -473,39 +479,53 @@ struct tawaf: View {
                     laps: trackingManager.indoorLaps
                 )
             }
+            .onChange(of: trackingManager.hasCrossedStartLine) { crossed in
+                if crossed && !hasStartedTimer {
+                    hasStartedTimer = true
+                    startTimer()
+                }
+            }
+            .onChange(of: trackingManager.currentIndoorLaps) { laps in
+                if laps == 7 {
+                    finalLapDuration = timeElapsed
+                    timer?.invalidate()
+                    timer = nil
+                    navigateToNext = true
+                }
+            }
+
             .navigationBarBackButtonHidden(true)
         }
     }
-
     func startTimer() {
-        showStartButton = false
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            timeElapsed += 1
+            showStartButton = false
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                timeElapsed += 1
 
-            if timeElapsed % 2 == 0 && lapCount < 7 {
-                progress = 0
-                circleID = UUID()
+                if timeElapsed % 2 == 0 && lapCount < 7 {
+                    progress = 0
+                    circleID = UUID()
 
-                withAnimation(.easeInOut(duration: 1.0)) {
-                    progress = 1
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    lapCount += 1
-
-                    if lapCount == 6 {
-                        isTrackingPaused = true
-                        timer?.invalidate()
+                    withAnimation(.easeInOut(duration: 1.0)) {
+                        progress = 1
                     }
 
-                    if lapCount == 7 {
-                        timer?.invalidate()
-                        trackingManager.isTawafComplete = true // ✅ Mark complete for navigation
-                    }
+    //                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+    //                    lapCount += 1
+    //
+    //                    if lapCount == 6 {
+    //                        isTrackingPaused = true
+    //                        timer?.invalidate()
+    //                    }
+    //
+    //                    if lapCount == 7 {
+    //                        timer?.invalidate()
+    //                        navigateToNext = true // ✅ الانتقال التلقائي
+    //                    }
+    //                }
                 }
             }
         }
-    }
 
     func resumeAfterPause() {
         isTrackingPaused = false

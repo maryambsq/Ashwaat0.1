@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Summary: View {
+    @AppStorage("finalLapDuration") var finalLapDuration: Int = 0
     @State private var navigateToSai = false
     let steps: Int
     let distance: Double
@@ -61,16 +62,16 @@ struct Summary: View {
                                 .alignmentGuide(.top) { d in d[.top] }
                                 .padding(.horizontal, 60)
                             
-                            VStack(spacing: 15) {
+                            VStack(alignment: .leading, spacing: 15) {
                                 
                                 HStack {
                                     Image("TimerL")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 40, height: 40)
-                                        .padding(.leading, -20)
+                                        .frame(width: 32, height: 32)
+                                        .padding(.leading, 4)
 
-                                    Text("you spent 40 min")
+                                    Text("You spent \(formattedFinalDuration).")
                                         .foregroundColor(Color("AccentColor"))
                                         .font(.body)
                                         .fontWeight(.bold)
@@ -85,26 +86,26 @@ struct Summary: View {
                                         .scaledToFit()
                                         .frame(width: 40, height: 40)
 
-                                    Text("you took \(steps) steps")
+                                    Text("You took \(steps) steps.")
                                         .foregroundColor(Color("AccentColor"))
                                         .font(.body)
                                         .fontWeight(.bold)
                                         .fontDesign(.rounded)
-                                        .padding(.leading, 10)
+                                        .padding(.leading, 6)
                                 }
 
                                 HStack {
                                     Image("QuranL")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 40, height: 40)
+                                        .frame(width: 40, height: 30)
 
-                                    Text("you completed tawaf")
+                                    Text("You completed Tawaaf!")
                                         .foregroundColor(Color("AccentColor"))
                                         .font(.body)
                                         .fontWeight(.bold)
                                         .fontDesign(.rounded)
-                                        .padding(.leading, 10)
+                                        .padding(.leading, 6)
                                 }
                             }
                             .offset(x: -20, y: 80)
@@ -137,6 +138,11 @@ struct Summary: View {
             }
             .navigationBarBackButtonHidden(true) 
         }
+    }
+    var formattedFinalDuration: String {
+        let minutes = finalLapDuration / 60
+        let seconds = finalLapDuration % 60
+        return "\(minutes) min, \(seconds) sec"
     }
 }
 

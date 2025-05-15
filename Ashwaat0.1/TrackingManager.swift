@@ -8,6 +8,8 @@ import simd
 import SwiftData
 
 class TrackingManager: ObservableObject {
+    @Published var lapProgress: Double = 0.0 // Progress in percent (0–100%)
+    
     // ... existing properties
     private let motionManager = CMMotionManager()
     private let pedometer = CMPedometer()
@@ -28,6 +30,47 @@ class TrackingManager: ObservableObject {
     // SwiftData context
     private var modelContext: ModelContext?
     
+    // MARK: - Angular Lap Tracking Logic
+
+    // Define Kaaba center and start line globally or in your init
+    private var previousAngle: Double?
+    private let kaabaCoordinate = CLLocationCoordinate2D(latitude: 24.860870496480675, longitude: 24.860870496480675) // Demo coords
+    private let startLineCoordinate = CLLocationCoordinate2D(latitude: 24.860872072775535, longitude: 46.72800847065588) // Demo coords
+
+    // Track progress angle
+    private var accumulatedAngle: Double = 0.0
+
+    // Converts coordinate to vector relative to center
+    private func angleFromKaaba(to location: CLLocationCoordinate2D) -> Double {
+        let dx = location.longitude - kaabaCoordinate.longitude
+        let dy = location.latitude - kaabaCoordinate.latitude
+        return atan2(dy, dx)
+    }
+    
+    func updateLapProgress(currentLocation: CLLocationCoordinate2D) {
+        let currentAngle = angleFromKaaba(to: currentLocation)
+
+        if let last = previousAngle {
+            var delta = currentAngle - last
+            if delta > .pi { delta -= 2 * .pi }
+            if delta < -.pi { delta += 2 * .pi }
+
+            accumulatedAngle += delta
+
+            // Calculate progress as percentage
+            let progress = min(abs(accumulatedAngle) / (2 * .pi), 1.0)
+            lapProgress = progress * 100.0 // Percent value for UI
+
+            if abs(accumulatedAngle) >= 2 * .pi {
+                currentIndoorLaps += 1
+                accumulatedAngle = 0
+                print("✅ Lap Completed! Total: \(currentIndoorLaps)")
+            }
+        }
+
+        previousAngle = currentAngle
+    }
+
     // Add initializer
     init(locationManager: LocationManager, modelContext: ModelContext? = nil) {
         self.locationManager = locationManager
@@ -132,13 +175,13 @@ class TrackingManager: ObservableObject {
 //    private let maxCycleProgress: Double = 1.1 // 110% of full circle allowed
 //    
     // Kaaba center coordinates
-    private let kaabaCenterLatitude: Double = 24.78676046638857
-    private let kaabaCenterLongitude: Double = 46.797685303859474
-    private let startLineLatitude: Double = 24.78681644972676
-    private let startLineLongitude: Double = 46.79756642690325
+    private let kaabaCenterLatitude: Double = 24.860810237081548
+    private let kaabaCenterLongitude: Double = 46.727509656759025
+    private let startLineLatitude: Double = 24.86064
+    private let startLineLongitude: Double = 46.72768
     
-    private let startLinePointA = CLLocationCoordinate2D(latitude: 24.78676046638857, longitude: 46.797685303859474)
-    private let startLinePointB = CLLocationCoordinate2D(latitude: 24.78681644972676, longitude: 46.79756642690325)
+    private let startLinePointA = CLLocationCoordinate2D(latitude: 24.860810237081548, longitude: 46.727509656759025)
+    private let startLinePointB = CLLocationCoordinate2D(latitude: 24.86064, longitude: 46.72768)
     
     
     private var lastStartLineCrossing: CLLocation? = nil
