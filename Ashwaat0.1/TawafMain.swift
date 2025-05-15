@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TawafMain: View {
     @State private var navigateToTawaf = false
+    @EnvironmentObject var trackingManager: TrackingManager
+    @EnvironmentObject var locationManager: LocationManager
 
     var body: some View {
         NavigationStack { // Use NavigationStack instead of NavigationView
@@ -65,6 +67,30 @@ struct TawafMain: View {
                                     
                                     Spacer()
                                     
+//                                    VStack(spacing: 8) {
+//                                        Text("📍 Tawaf Debug Info")
+//                                            .font(.headline)
+//                                            .foregroundColor(.white)
+//                                        Text("Tawaf Region: \(trackingManager.isInTawafZone ? "✅ INSIDE" : "❌ OUTSIDE")")
+//                                            .foregroundColor(trackingManager.isInTawafZone ? .green : .red)
+//
+//                                       
+//
+//                                        if let location = locationManager.currentUserLocation {
+//                                            Text(String(format: "Lat: %.6f", location.coordinate.latitude))
+//                                                .font(.caption)
+//                                                .foregroundColor(.white)
+//                                            Text(String(format: "Lon: %.6f", location.coordinate.longitude))
+//                                                .font(.caption)
+//                                                .foregroundColor(.white)
+//                                        } else {
+//                                            Text("Getting location...")
+//                                                .font(.caption)
+//                                                .foregroundColor(.gray)
+//                                        }
+//                                    }
+//                                    .padding(.top, 8)
+
                                     Button(action: {
                                         // Start tracking action here
                                         navigateToTawaf = true
@@ -73,13 +99,14 @@ struct TawafMain: View {
                                         Text("Get Started")
                                             .font(.headline)
                                             .fontWeight(.semibold)
-                                            .foregroundColor(Color("GetStartedButtonTextColor"))
+                                            .foregroundColor(Color("ButtonTextColor"))
                                             .frame(width: 185, height: 60)
-                                            .background(Color("GetStartedButton"))
+                                            .background(Color("SecondaryColor"))
                                             .cornerRadius(20)
                                             .fontDesign(.rounded)
 
-                                    }
+                                    }.disabled(!trackingManager.isInTawafZone)
+                                        .opacity(trackingManager.isInTawafZone ? 1.0 : 0.5)
                                     .offset(y: 70)
                                     NavigationLink("", destination: tawaf(), isActive: $navigateToTawaf)
                                         .opacity(0)
@@ -94,8 +121,11 @@ struct TawafMain: View {
                     }
                 }
             }
-            .navigationBarBackButtonHidden(true) 
+            .navigationBarBackButtonHidden(true)
+        }.onReceive(trackingManager.$isInTawafZone) { isInside in
+            print("📡 TawafMain view received isInTawafZone update: \(isInside)")
         }
+
     }
 }
 

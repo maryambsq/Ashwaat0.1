@@ -33,6 +33,15 @@
         }
       }
     },
+    "%lld%%" : {
+
+    },
+    "⚠️ You left the Tawaf zone. Tracking paused." : {
+
+    },
+    "📍 Tawaf Debug Info" : {
+
+    },
     "Add Item" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -218,6 +227,9 @@
         }
       }
     },
+    "Find Start Line" : {
+
+    },
     "Focus intact" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -275,6 +287,9 @@
           }
         }
       }
+    },
+    "Getting location..." : {
+
     },
     "Item at %@" : {
       "extractionState" : "stale",
@@ -518,6 +533,15 @@
         }
       }
     },
+    "Meters" : {
+
+    },
+    "Mode: %@" : {
+
+    },
+    "On Track" : {
+
+    },
     "Resume" : {
       "localizations" : {
         "ar" : {
@@ -642,6 +666,9 @@
         }
       }
     },
+    "Steps" : {
+
+    },
     "Tawaf" : {
       "localizations" : {
         "ar" : {
@@ -669,6 +696,9 @@
           }
         }
       }
+    },
+    "Tawaf Region: %@" : {
+
     },
     "To accurately track your Tawaf and Sa'i, please allow location access while using the app." : {
       "extractionState" : "manual",
@@ -728,6 +758,9 @@
         }
       }
     },
+    "You completed Tawaaf!" : {
+
+    },
     "you completed tawaf" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -757,7 +790,11 @@
         }
       }
     },
+    "You spent %@." : {
+
+    },
     "you spent 40 min" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -814,7 +851,11 @@
         }
       }
     },
+    "You took %lld steps." : {
+
+    },
     "you took 4000 steps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

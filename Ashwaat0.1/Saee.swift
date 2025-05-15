@@ -4,10 +4,12 @@
 //
 //  Created by Razan on 01/05/2025.
 //
+
 import SwiftUI
 
 struct Saee: View {
-    @Environment(\.dismiss) var dismiss 
+    @Environment(\.dismiss) var dismiss
+
     @State private var lapCount = 0
     @State private var timeElapsed: Int = 0
     @State private var timer: Timer?
@@ -70,9 +72,9 @@ struct Saee: View {
                 Spacer()
 
                 // ✅ NavigationLink للانتقال التلقائي بعد آخر شوط
-                NavigationLink(destination: Summary(), isActive: $navigateToNext) {
-                    EmptyView()
-                }
+//                NavigationLink(destination: Summary(), isActive: $navigateToNext) {
+//                    EmptyView()
+//                }
 
                 ZStack {
                     Circle()

@@ -8,47 +8,13 @@
 import SwiftUI
 import CoreLocation
 
-class GeofenceManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    private let locationManager = CLLocationManager()
-    
-    // Example coordinates: Kaaba
-    private let region = CLCircularRegion(
-        center: CLLocationCoordinate2D(latitude: 21.4225, longitude: 39.8262),
-        radius: 50,
-        identifier: "KaabaRegion"
-    )
-    
-    @Published var isInsideGeofence = false
-
-    override init() {
-        super.init()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        region.notifyOnEntry = true
-        region.notifyOnExit = true
-        locationManager.startMonitoring(for: region)
-    }
-
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        if region.identifier == self.region.identifier {
-            isInsideGeofence = true
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        if region.identifier == self.region.identifier {
-            isInsideGeofence = false
-        }
-    }
-}
-
-
 struct VerifyLocation: View {
-    @StateObject private var geoManager = GeofenceManager()
+   // @StateObject private var geoManager = GeofenceManager()
+//    @State private var goToTawafMain = false
+//    @EnvironmentObject var trackingManager: TrackingManager
+    @EnvironmentObject var trackingManager: TrackingManager
+    @EnvironmentObject var locationManager: LocationManager
     @State private var goToTawafMain = false
-
     var body: some View {
         ZStack {
             Color("BGColor").ignoresSafeArea()
@@ -98,6 +64,29 @@ struct VerifyLocation: View {
                                 .padding(.top)
                                 .padding(.bottom, 5)
                                 .fontDesign(.rounded)
+                            
+//                            VStack(spacing: 8) {
+//                                Text("📍 Location Debug")
+//                                    .font(.headline)
+//                                    .foregroundColor(.white)
+//
+//                                Text("Haram Region: \(trackingManager.isInHaramRegion ? "✅ INSIDE" : "❌ OUTSIDE")")
+//                                    .foregroundColor(trackingManager.isInHaramRegion ? .green : .red)
+//
+//                                if let location = locationManager.currentUserLocation {
+//                                    Text(String(format: "Lat: %.6f", location.coordinate.latitude))
+//                                        .font(.caption)
+//                                        .foregroundColor(.white)
+//                                    Text(String(format: "Lon: %.6f", location.coordinate.longitude))
+//                                        .font(.caption)
+//                                        .foregroundColor(.white)
+//                                } else {
+//                                    Text("Getting location...")
+//                                        .font(.caption)
+//                                        .foregroundColor(.gray)
+//                                }
+//                            }
+//                            .padding(.bottom, 10)
 
                             Button(action: {
                                 // Start tracking action here
@@ -106,14 +95,17 @@ struct VerifyLocation: View {
                                     .font(.headline)
                                     .fontWeight(.semibold)
                                     .foregroundColor(.white)
-                                    .opacity(geoManager.isInsideGeofence ? 1.0 : 0.6)
+//                                    .opacity(geoManager.isInsideGeofence ? 1.0 : 0.6)
+                                    .opacity(trackingManager.isInHaramRegion ? 1.0 : 0.6)
+
                                     .frame(width: 185, height: 60)
                                     .background(Color("DisabledButton"))
                                     .cornerRadius(20)
                                     .fontDesign(.rounded)
 
                             }
-                            .disabled(!geoManager.isInsideGeofence)
+                            .disabled(!trackingManager.isInHaramRegion)
+                           // .disabled(!geoManager.isInsideGeofence)
                             .offset(y: 40)
                         }
                         .padding()
@@ -125,13 +117,16 @@ struct VerifyLocation: View {
             NavigationLink(destination: TawafMain(), isActive: $goToTawafMain) {
                 EmptyView()
             }
+            .hidden()
+
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        .task {
+            if trackingManager.isInHaramRegion {
                 goToTawafMain = true
             }
         }
+
     }
 }
 
