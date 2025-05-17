@@ -95,7 +95,7 @@ struct AshwaatAppShortcuts: AppShortcutsProvider {
                 "View how many laps are left in \(.applicationName)"
             ],
             shortTitle: "Remaining Laps",
-            systemImageName: "arrow.clockwise.circle"
+            systemImageName: "clock.badge.questionmark"
         )
     }
 }

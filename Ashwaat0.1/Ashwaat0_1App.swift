@@ -31,7 +31,9 @@ struct Ashwaat0_1App: App {
         
 //        // ✅ Register Siri Shortcuts
 //        AppShortcutsCenter.shared.registerShortcuts(from: [
-//            StartTawaafIntent()
+//            StartTawaafIntent(),
+//            CurrentLapCountIntent(),
+//            RemainingLapCountIntent()
 //        ])
 
     }
