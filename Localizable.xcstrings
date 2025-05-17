@@ -91,6 +91,16 @@
         }
       }
     },
+    "✅ You’ve completed %lld lap%@. You're currently on lap %lld." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "✅ You’ve completed %1$lld lap%2$@. You're currently on lap %3$lld."
+          }
+        }
+      }
+    },
     "📍 Tawaf Debug Info" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -278,6 +288,12 @@
           }
         }
       }
+    },
+    "Current Lap" : {
+
+    },
+    "Current Lap Number" : {
+
     },
     "Done" : {
       "extractionState" : "manual",
@@ -963,6 +979,9 @@
           }
         }
       }
+    },
+    "Tells you how many laps you’ve completed and what lap you’re currently on." : {
+
     },
     "To accurately track your Tawaf and Sa'i, please allow location access while using the app." : {
       "extractionState" : "manual",

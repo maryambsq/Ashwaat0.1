@@ -6,9 +6,16 @@ import Combine
 import CoreLocation
 import simd
 import SwiftData
+import SwiftUI
 
 class TrackingManager: ObservableObject {
+    @AppStorage("currentIndoorLaps") var currentIndoorLaps: Int = 0
+    @AppStorage("indoorLaps") var indoorLaps: Int = 0
+    
     @Published var lapProgress: Double = 0.0 // Progress in percent (0–100%)
+    
+    // SwiftData-backed session
+    @Published var session: TawafSession
     
     // ... existing properties
     private let motionManager = CMMotionManager()
@@ -63,6 +70,7 @@ class TrackingManager: ObservableObject {
         
         if progress >= 1.0 {
             currentIndoorLaps += 1
+            session.laps = currentIndoorLaps
             motionLapDistance = 0
             lapProgress = 0
             print("👣 Motion-based lap completed. Total laps: \(currentIndoorLaps)")
@@ -133,6 +141,7 @@ class TrackingManager: ObservableObject {
 
             if abs(accumulatedAngle) >= 2 * .pi {
                 currentIndoorLaps += 1
+                session.laps = currentIndoorLaps
                 accumulatedAngle = 0
                 lapProgress = 0
                 lastDisplayedProgress = 0
@@ -143,12 +152,30 @@ class TrackingManager: ObservableObject {
         previousAngle = currentAngle
     }
 
-    // Add initializer
+//    // Add initializer
+//    init(locationManager: LocationManager, modelContext: ModelContext? = nil) {
+//        self.locationManager = locationManager
+//        self.modelContext = modelContext
+//        
+//        // Observe live location updates and check GPS signal
+//        locationManager.$currentUserLocation
+//            .compactMap { $0 }
+//            .sink { [weak self] location in
+//                self?.evaluateGPSQuality(from: location)
+//                self?.updateLapProgress(currentLocation: location.coordinate)
+//            }
+//            .store(in: &cancellables)
+//    }
+    
+    
     init(locationManager: LocationManager, modelContext: ModelContext? = nil) {
         self.locationManager = locationManager
         self.modelContext = modelContext
+
+        // 👉 Initialize session first to avoid use-before-initialized error
+        self.session = TawafSession(date: .now, laps: 0, distance: 0.0, steps: 0)
         
-        // Observe live location updates and check GPS signal
+        // ✅ Now it's safe to reference self
         locationManager.$currentUserLocation
             .compactMap { $0 }
             .sink { [weak self] location in
@@ -158,8 +185,9 @@ class TrackingManager: ObservableObject {
             .store(in: &cancellables)
     }
     
+    
     @Published var isIndoorTrackingActive = false
-    @Published var currentIndoorLaps = 0
+//    @Published var currentIndoorLaps = 0
     @Published var currentIndoorDistance = 0.0
     @Published var currentIndoorSteps = 0
     @Published var trackingError: String?
@@ -335,7 +363,7 @@ class TrackingManager: ObservableObject {
     
     @Published public var indoorSteps: Int = 0
     @Published public var indoorDistance: Double = 0.0
-    @Published public var indoorLaps: Int = 0
+//    @Published public var indoorLaps: Int = 0
     // Geofence state
     @Published var isInHaramRegion: Bool = false
     @Published var isInTawafZone: Bool = false
@@ -416,6 +444,7 @@ class TrackingManager: ObservableObject {
                         } else {
                             if totalLapDistance >= minLapDistance {
                                 currentIndoorLaps += 1
+                                session.laps = currentIndoorLaps
                                 indoorLaps = currentIndoorLaps
                                 lapStatus = "Lap \(currentIndoorLaps) completed!"
                                 startLineAlert = "✅ Completed lap \(currentIndoorLaps)"
@@ -474,8 +503,9 @@ class TrackingManager: ObservableObject {
                 let distanceThisLap = indoorDistance - lapStartDistance
                 
                 if stepsThisLap >= minStepsPerLap && distanceThisLap >= minLapDistance {
-                    indoorLaps += 1
-                    currentIndoorLaps = indoorLaps
+                    indoorLaps += 1   // what is this?
+                    session.laps = currentIndoorLaps
+                    currentIndoorLaps = indoorLaps  // and this??
                     totalRotation = 0.0
                     lastStepCount = currentStepCount
                     lapStartDistance = indoorDistance

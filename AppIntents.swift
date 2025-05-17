@@ -29,6 +29,22 @@ struct StartTawaafIntent: AppIntent {
     }
 }
 
+struct CurrentLapCountIntent: AppIntent {
+    static var title: LocalizedStringResource = "Current Lap Number"
+    static var description = IntentDescription("Tells you how many laps you’ve completed and what lap you’re currently on.")
+    static var openAppWhenRun: Bool = true
+
+    @AppStorage("currentIndoorLaps") var currentIndoorLaps: Int = 0
+    @AppStorage("indoorLaps") var indoorLaps: Int = 0
+    
+    func perform() async throws -> some IntentResult {
+        return .result(
+            dialog: IntentDialog("✅ You’ve completed \(currentIndoorLaps) lap\(currentIndoorLaps == 1 ? "" : "s"). You're currently on lap \(currentIndoorLaps + 1).")
+        )
+    }
+}
+
+
 class AshwaatAppShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
@@ -43,5 +59,20 @@ class AshwaatAppShortcuts: AppShortcutsProvider {
             shortTitle: "Start Tawaaf",
             systemImageName: "figure.walk.circle.fill"
         )
+        
+        AppShortcut(
+            intent: CurrentLapCountIntent(),
+            phrases: [
+                "Which lap am I in?",
+                "What number of lap am I doing?",
+                "View current lap number",
+                "Current number of lap in \(.applicationName)",
+                "View current lap number in \(.applicationName)",
+            ],
+            shortTitle: "Current Lap",
+            systemImageName: "clock"
+        )
     }
 }
+
+
