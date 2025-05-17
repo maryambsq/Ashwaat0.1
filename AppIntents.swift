@@ -12,20 +12,18 @@ struct StartTawaafIntent: AppIntent {
     static var title: LocalizedStringResource = "Start Tawaaf"
     static var description = IntentDescription("Begin tracking Tawaaf laps if inside the allowed area.")
     static var openAppWhenRun: Bool = true
-
+    
     @AppStorage("isInGeofence") var isInGeofence: Bool = false
     @AppStorage("startTawaafFromSiri") var startTawaafFromSiri: Bool = false
-
-//    @MainActor
+    
     func perform() async throws -> some IntentResult {
         print("🔥 StartTawaafIntent triggered!")
         if isInGeofence {
             startTawaafFromSiri = true
-            return .result(dialog: "You are inside the allowed area. Tawaaf has started in Ashwaat.")
+            return .result(dialog: IntentDialog(stringLiteral: "You are inside the allowed area. Tawaaf has started in Ashwaat."))
         } else {
-            return .result(dialog: "You're not currently inside the Tawaaf zone. Please move into the area to begin.")
+            return .result(dialog: IntentDialog(stringLiteral: "You're not currently inside the Tawaaf zone. Please move into the area to begin."))
         }
-        
     }
 }
 
