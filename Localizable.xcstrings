@@ -120,12 +120,6 @@
         }
       }
     },
-    "📍 You are inside the allowed area. Tawaaf has started in Ashwaat." : {
-
-    },
-    "🚫 You're not currently inside the Tawaaf zone. Please move into the area to begin." : {
-
-    },
     "Add Item" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -999,6 +993,9 @@
         }
       }
     },
+    "You are inside the allowed area. Tawaaf has started in Ashwaat." : {
+
+    },
     "you completed Sa’i" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1256,6 +1253,9 @@
           }
         }
       }
+    },
+    "You're not currently inside the Tawaaf zone. Please move into the area to begin." : {
+
     }
   },
   "version" : "1.0"
