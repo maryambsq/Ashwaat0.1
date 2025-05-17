@@ -767,6 +767,9 @@
         }
       }
     },
+    "Remaining Laps" : {
+
+    },
     "Resume" : {
       "localizations" : {
         "ar" : {
@@ -979,6 +982,9 @@
           }
         }
       }
+    },
+    "Tells you how many laps are left to complete and what lap you're currently on." : {
+
     },
     "Tells you how many laps you’ve completed and what lap you’re currently on." : {
 

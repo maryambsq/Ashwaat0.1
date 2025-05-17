@@ -44,8 +44,23 @@ struct CurrentLapCountIntent: AppIntent {
     }
 }
 
+struct RemainingLapCountIntent: AppIntent {
+    static var title: LocalizedStringResource = "Remaining Laps"
+    static var description = IntentDescription("Tells you how many laps are left to complete and what lap you're currently on.")
+    static var openAppWhenRun: Bool = true
 
-class AshwaatAppShortcuts: AppShortcutsProvider {
+    @AppStorage("currentIndoorLaps") var currentIndoorLaps: Int = 1
+    let totalLaps = 7
+
+    func perform() async throws -> some IntentResult {
+        let lapsLeft = max(totalLaps - currentIndoorLaps, 0)
+        let response = "🌀 You have \(lapsLeft) lap\(lapsLeft == 1 ? "" : "s") left. You're currently on lap \(currentIndoorLaps)."
+        return .result(dialog: IntentDialog(stringLiteral: response))
+    }
+}
+
+
+struct AshwaatAppShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: StartTawaafIntent(),
@@ -57,7 +72,7 @@ class AshwaatAppShortcuts: AppShortcutsProvider {
                 "Begin Tawaaf laps"
             ],
             shortTitle: "Start Tawaaf",
-            systemImageName: "figure.walk.circle.fill"
+            systemImageName: "figure.walk.circle"
         )
         
         AppShortcut(
@@ -70,7 +85,19 @@ class AshwaatAppShortcuts: AppShortcutsProvider {
                 "View current lap number in \(.applicationName)",
             ],
             shortTitle: "Current Lap",
-            systemImageName: "clock"
+            systemImageName: "checkmark.circle"
+        )
+        
+        AppShortcut(
+            intent: RemainingLapCountIntent(),
+            phrases: [
+                "How many laps are left for my Tawaaf?",
+                "How many laps are left to complete?",
+                "How many laps are left in \(.applicationName)?",
+                "View how many laps are left in \(.applicationName)"
+            ],
+            shortTitle: "Remaining Laps",
+            systemImageName: "arrow.clockwise.circle"
         )
     }
 }
