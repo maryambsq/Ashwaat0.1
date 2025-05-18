@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3218288D2DD767EE0093052E /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3218288C2DD767EE0093052E /* AppIntents.swift */; };
 		321828902DD76F4D0093052E /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3218288F2DD76F4D0093052E /* AppIntents.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		327123F02DCC80FF00CA17D3 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 327123EF2DCC80FF00CA17D3 /* Localizable.xcstrings */; };
+		328BFADC2DD9A8C3003CA4C6 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3218288C2DD767EE0093052E /* AppIntents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,7 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3218288D2DD767EE0093052E /* AppIntents.swift in Sources */,
+				328BFADC2DD9A8C3003CA4C6 /* AppIntents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

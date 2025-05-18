@@ -15,6 +15,12 @@
 		<key>NSExtensionPrincipalClass</key>
 		<string>$(PRODUCT_MODULE_NAME).AppIntents</string>
 	</dict>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>INStartTawaafIntent</string>
+		<string>INCurrentLapCountIntent</string>
+		<string>INRemainingLapCountIntent</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

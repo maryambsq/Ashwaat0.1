@@ -16,7 +16,8 @@ struct StartTawaafIntent: AppIntent {
     @AppStorage("isInGeofence") var isInGeofence: Bool = false
     @AppStorage("startTawaafFromSiri") var startTawaafFromSiri: Bool = false
     
-    func perform() async throws -> some IntentResult {
+    @MainActor
+    func perform() async throws -> some IntentResult & ProvidesDialog {
         print("🔥 StartTawaafIntent triggered!")
         if isInGeofence {
             startTawaafFromSiri = true
@@ -35,7 +36,8 @@ struct CurrentLapCountIntent: AppIntent {
     @AppStorage("currentIndoorLaps") var currentIndoorLaps: Int = 0
     @AppStorage("indoorLaps") var indoorLaps: Int = 0
     
-    func perform() async throws -> some IntentResult {
+    @MainActor
+    func perform() async throws -> some IntentResult & ProvidesDialog  {
         return .result(
             dialog: IntentDialog("✅ You’ve completed \(currentIndoorLaps) lap\(currentIndoorLaps == 1 ? "" : "s"). You're currently on lap \(currentIndoorLaps + 1).")
         )
@@ -50,7 +52,8 @@ struct RemainingLapCountIntent: AppIntent {
     @AppStorage("currentIndoorLaps") var currentIndoorLaps: Int = 1
     let totalLaps = 7
 
-    func perform() async throws -> some IntentResult {
+    @MainActor
+    func perform() async throws -> some IntentResult & ProvidesDialog  {
         let lapsLeft = max(totalLaps - currentIndoorLaps, 0)
         let response = "🌀 You have \(lapsLeft) lap\(lapsLeft == 1 ? "" : "s") left. You're currently on lap \(currentIndoorLaps)."
         return .result(dialog: IntentDialog(stringLiteral: response))
