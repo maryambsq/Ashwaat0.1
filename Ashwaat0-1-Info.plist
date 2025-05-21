@@ -8,13 +8,6 @@
 		<string>CurrentLapCountIntent</string>
 		<string>RemainingLapCountIntent</string>
 	</array>
-	<key>NSExtension</key>
-	<dict>
-		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.intents-service</string>
-		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).AppIntents</string>
-	</dict>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>INStartTawaafIntent</string>

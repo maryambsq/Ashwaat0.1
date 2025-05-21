@@ -39,7 +39,7 @@ struct CurrentLapCountIntent: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog  {
         return .result(
-            dialog: IntentDialog("✅ You’ve completed \(currentIndoorLaps) lap\(currentIndoorLaps == 1 ? "" : "s"). You're currently on lap \(currentIndoorLaps + 1).")
+            dialog: IntentDialog("You’ve completed \(currentIndoorLaps) lap\(currentIndoorLaps == 1 ? "" : "s"). You're currently on lap \(currentIndoorLaps + 1).")
         )
     }
 }
@@ -55,7 +55,7 @@ struct RemainingLapCountIntent: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog  {
         let lapsLeft = max(totalLaps - currentIndoorLaps, 0)
-        let response = "🌀 You have \(lapsLeft) lap\(lapsLeft == 1 ? "" : "s") left. You're currently on lap \(currentIndoorLaps)."
+        let response = "You have \(lapsLeft) lap\(lapsLeft == 1 ? "" : "s") left. You're currently on lap \(currentIndoorLaps)."
         return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
@@ -79,7 +79,7 @@ struct AshwaatAppShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: CurrentLapCountIntent(),
             phrases: [
-                "Which lap am I in?",
+                "Which Tawaaf lap am I in?",
                 "What number of lap am I doing?",
                 "View current lap number",
                 "Current number of lap in \(.applicationName)",

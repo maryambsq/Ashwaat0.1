@@ -91,16 +91,6 @@
         }
       }
     },
-    "✅ You’ve completed %lld lap%@. You're currently on lap %lld." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "✅ You’ve completed %1$lld lap%2$@. You're currently on lap %3$lld."
-          }
-        }
-      }
-    },
     "📍 Tawaf Debug Info" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1281,6 +1271,16 @@
     },
     "You're not currently inside the Tawaaf zone. Please move into the area to begin." : {
 
+    },
+    "You’ve completed %lld lap%@. You're currently on lap %lld." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You’ve completed %1$lld lap%2$@. You're currently on lap %3$lld."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
