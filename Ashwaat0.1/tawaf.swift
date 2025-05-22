@@ -20,6 +20,7 @@ struct tawaf: View {
     @State private var showStartButton = true
     @State private var navigateToNext = false
     @State private var backToHome = false
+    
 
 //    @State private var progress: CGFloat = 0
     @State private var circleID = UUID()
@@ -27,6 +28,7 @@ struct tawaf: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var trackingManager: TrackingManager
+    @ObservedObject var wcManager = WatchConnectivityManager.shared
     @State private var showSummary = false
 
     var body: some View {
@@ -93,7 +95,7 @@ struct tawaf: View {
                         .animation(.easeInOut(duration: 1.0), value: trackingManager.lapProgress)
 
 
-                    Text(formattedEnglishNumber(trackingManager.currentIndoorLaps))
+                    Text("\(trackingManager.currentIndoorLaps)")
                         .font(.system(size: 80, weight: .bold ,design: .rounded))
                         .foregroundColor(isTrackingPaused ? Color.stopgreeno : Color.greeno)
                 }
@@ -208,6 +210,14 @@ struct tawaf: View {
             .onDisappear {
                 timer?.invalidate()
             }
+            
+            // ✅ تعديل هنا: إضافة أمر للساعة عند انتهاء الطواف
+                        .onChange(of: trackingManager.isTawafComplete) { completed in
+                            if completed {
+                                WatchConnectivityManager.shared.sendMessage("showSummary") // ✅ إرسال أمر للساعة
+                                showSummary = true
+                            }
+                        }
             .onChange(of: trackingManager.isTawafComplete) { completed in
                 if completed {
                     showSummary = true
@@ -234,6 +244,15 @@ struct tawaf: View {
                     navigateToNext = true
                 }
             }
+            
+            .onAppear {
+                            // ✅ تشغيل التتبع عند فتح الشاشة
+                            startIndoorTracking()
+
+                            // ✅ إرسال أمر إلى الساعة لبدء العرض
+                            wcManager.sendMessage("startTawaf")
+                        }
+            
 
             .navigationBarBackButtonHidden(true)
         }

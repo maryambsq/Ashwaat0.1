@@ -94,6 +94,7 @@ struct TawafMain: View {
 
                                     Button(action: {
                                         // Start tracking action here
+                                        WatchConnectivityManager.shared.sendMessage("startTawaf")
                                         navigateToTawaf = true
 
                                     }) {

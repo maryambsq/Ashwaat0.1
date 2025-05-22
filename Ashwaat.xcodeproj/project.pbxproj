@@ -10,6 +10,11 @@
 		321828902DD76F4D0093052E /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3218288F2DD76F4D0093052E /* AppIntents.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		327123F02DCC80FF00CA17D3 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 327123EF2DCC80FF00CA17D3 /* Localizable.xcstrings */; };
 		328BFADC2DD9A8C3003CA4C6 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3218288C2DD767EE0093052E /* AppIntents.swift */; };
+		68C77ABA2DDE0DA200BEE39E /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C77AAF2DDE0DA200BEE39E /* WatchConnectivityManager.swift */; };
+		68C77B402DDE15B300BEE39E /* WatchAshhwaat Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 68C77B1D2DDE15B200BEE39E /* WatchAshhwaat Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		68C77B4E2DDE166D00BEE39E /* LapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C77B4D2DDE165400BEE39E /* LapModel.swift */; };
+		68C77B522DDE26E900BEE39E /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C77AAF2DDE0DA200BEE39E /* WatchConnectivityManager.swift */; };
+		68C77B532DDE270300BEE39E /* LapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C77B4D2DDE165400BEE39E /* LapModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,7 +32,42 @@
 			remoteGlobalIDString = 3258FA622DCBD78E00413C98;
 			remoteInfo = Ashwaat0.1;
 		};
+		68C77B2D2DDE15B300BEE39E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3258FA5B2DCBD78E00413C98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68C77B1C2DDE15B200BEE39E;
+			remoteInfo = "WatchAshhwaat Watch App";
+		};
+		68C77B372DDE15B300BEE39E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3258FA5B2DCBD78E00413C98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68C77B1C2DDE15B200BEE39E;
+			remoteInfo = "WatchAshhwaat Watch App";
+		};
+		68C77B3E2DDE15B300BEE39E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3258FA5B2DCBD78E00413C98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68C77B1C2DDE15B200BEE39E;
+			remoteInfo = "WatchAshhwaat Watch App";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		68C77B442DDE15B300BEE39E /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				68C77B402DDE15B300BEE39E /* WatchAshhwaat Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3218288B2DD750650093052E /* Ashwaat0.1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ashwaat0.1.entitlements; sourceTree = "<group>"; };
@@ -37,6 +77,11 @@
 		3258FA732DCBD78F00413C98 /* AshwaatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AshwaatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3258FA7D2DCBD78F00413C98 /* AshwaatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AshwaatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		327123EF2DCC80FF00CA17D3 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		68C77AAF2DDE0DA200BEE39E /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
+		68C77B1D2DDE15B200BEE39E /* WatchAshhwaat Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchAshhwaat Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68C77B2C2DDE15B300BEE39E /* WatchAshhwaat Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchAshhwaat Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68C77B362DDE15B300BEE39E /* WatchAshhwaat Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchAshhwaat Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68C77B4D2DDE165400BEE39E /* LapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -53,6 +98,26 @@
 		3258FA802DCBD78F00413C98 /* Ashwaat0.1UITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Ashwaat0.1UITests;
+			sourceTree = "<group>";
+		};
+		68B1F4602DD9B57D0036F2BB /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		68C77B1E2DDE15B200BEE39E /* WatchAshhwaat Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "WatchAshhwaat Watch App";
+			sourceTree = "<group>";
+		};
+		68C77B2F2DDE15B300BEE39E /* WatchAshhwaat Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "WatchAshhwaat Watch AppTests";
+			sourceTree = "<group>";
+		};
+		68C77B392DDE15B300BEE39E /* WatchAshhwaat Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "WatchAshhwaat Watch AppUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -80,6 +145,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68C77B1A2DDE15B200BEE39E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68C77B292DDE15B300BEE39E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68C77B332DDE15B300BEE39E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -94,11 +180,17 @@
 		3258FA5A2DCBD78E00413C98 = {
 			isa = PBXGroup;
 			children = (
+				68C77B4D2DDE165400BEE39E /* LapModel.swift */,
+				68C77AAF2DDE0DA200BEE39E /* WatchConnectivityManager.swift */,
 				3218288C2DD767EE0093052E /* AppIntents.swift */,
+				68B1F4602DD9B57D0036F2BB /* Models */,
 				3218288B2DD750650093052E /* Ashwaat0.1.entitlements */,
 				3258FA652DCBD78E00413C98 /* Ashwaat0.1 */,
 				3258FA762DCBD78F00413C98 /* Ashwaat0.1Tests */,
 				3258FA802DCBD78F00413C98 /* Ashwaat0.1UITests */,
+				68C77B1E2DDE15B200BEE39E /* WatchAshhwaat Watch App */,
+				68C77B2F2DDE15B300BEE39E /* WatchAshhwaat Watch AppTests */,
+				68C77B392DDE15B300BEE39E /* WatchAshhwaat Watch AppUITests */,
 				3258FA642DCBD78E00413C98 /* Products */,
 				327123EF2DCC80FF00CA17D3 /* Localizable.xcstrings */,
 				3218288E2DD76F4D0093052E /* Frameworks */,
@@ -111,6 +203,9 @@
 				3258FA632DCBD78E00413C98 /* Ashwaat.app */,
 				3258FA732DCBD78F00413C98 /* AshwaatTests.xctest */,
 				3258FA7D2DCBD78F00413C98 /* AshwaatUITests.xctest */,
+				68C77B1D2DDE15B200BEE39E /* WatchAshhwaat Watch App.app */,
+				68C77B2C2DDE15B300BEE39E /* WatchAshhwaat Watch AppTests.xctest */,
+				68C77B362DDE15B300BEE39E /* WatchAshhwaat Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,13 +220,16 @@
 				3258FA5F2DCBD78E00413C98 /* Sources */,
 				3258FA602DCBD78E00413C98 /* Frameworks */,
 				3258FA612DCBD78E00413C98 /* Resources */,
+				68C77B442DDE15B300BEE39E /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				68C77B3F2DDE15B300BEE39E /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				3258FA652DCBD78E00413C98 /* Ashwaat0.1 */,
+				68B1F4602DD9B57D0036F2BB /* Models */,
 			);
 			name = Ashwaat;
 			packageProductDependencies = (
@@ -186,6 +284,74 @@
 			productReference = 3258FA7D2DCBD78F00413C98 /* AshwaatUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		68C77B1C2DDE15B200BEE39E /* WatchAshhwaat Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68C77B412DDE15B300BEE39E /* Build configuration list for PBXNativeTarget "WatchAshhwaat Watch App" */;
+			buildPhases = (
+				68C77B192DDE15B200BEE39E /* Sources */,
+				68C77B1A2DDE15B200BEE39E /* Frameworks */,
+				68C77B1B2DDE15B200BEE39E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				68C77B1E2DDE15B200BEE39E /* WatchAshhwaat Watch App */,
+			);
+			name = "WatchAshhwaat Watch App";
+			packageProductDependencies = (
+			);
+			productName = "WatchAshhwaat Watch App";
+			productReference = 68C77B1D2DDE15B200BEE39E /* WatchAshhwaat Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		68C77B2B2DDE15B300BEE39E /* WatchAshhwaat Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68C77B452DDE15B300BEE39E /* Build configuration list for PBXNativeTarget "WatchAshhwaat Watch AppTests" */;
+			buildPhases = (
+				68C77B282DDE15B300BEE39E /* Sources */,
+				68C77B292DDE15B300BEE39E /* Frameworks */,
+				68C77B2A2DDE15B300BEE39E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68C77B2E2DDE15B300BEE39E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				68C77B2F2DDE15B300BEE39E /* WatchAshhwaat Watch AppTests */,
+			);
+			name = "WatchAshhwaat Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "WatchAshhwaat Watch AppTests";
+			productReference = 68C77B2C2DDE15B300BEE39E /* WatchAshhwaat Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		68C77B352DDE15B300BEE39E /* WatchAshhwaat Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68C77B482DDE15B300BEE39E /* Build configuration list for PBXNativeTarget "WatchAshhwaat Watch AppUITests" */;
+			buildPhases = (
+				68C77B322DDE15B300BEE39E /* Sources */,
+				68C77B332DDE15B300BEE39E /* Frameworks */,
+				68C77B342DDE15B300BEE39E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68C77B382DDE15B300BEE39E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				68C77B392DDE15B300BEE39E /* WatchAshhwaat Watch AppUITests */,
+			);
+			name = "WatchAshhwaat Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "WatchAshhwaat Watch AppUITests";
+			productReference = 68C77B362DDE15B300BEE39E /* WatchAshhwaat Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,6 +373,17 @@
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 3258FA622DCBD78E00413C98;
 					};
+					68C77B1C2DDE15B200BEE39E = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					68C77B2B2DDE15B300BEE39E = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 68C77B1C2DDE15B200BEE39E;
+					};
+					68C77B352DDE15B300BEE39E = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 68C77B1C2DDE15B200BEE39E;
+					};
 				};
 			};
 			buildConfigurationList = 3258FA5E2DCBD78E00413C98 /* Build configuration list for PBXProject "Ashwaat" */;
@@ -226,6 +403,9 @@
 				3258FA622DCBD78E00413C98 /* Ashwaat */,
 				3258FA722DCBD78F00413C98 /* AshwaatTests */,
 				3258FA7C2DCBD78F00413C98 /* AshwaatUITests */,
+				68C77B1C2DDE15B200BEE39E /* WatchAshhwaat Watch App */,
+				68C77B2B2DDE15B300BEE39E /* WatchAshhwaat Watch AppTests */,
+				68C77B352DDE15B300BEE39E /* WatchAshhwaat Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -253,6 +433,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68C77B1B2DDE15B200BEE39E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68C77B2A2DDE15B300BEE39E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68C77B342DDE15B300BEE39E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -260,6 +461,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C77B4E2DDE166D00BEE39E /* LapModel.swift in Sources */,
+				68C77ABA2DDE0DA200BEE39E /* WatchConnectivityManager.swift in Sources */,
 				328BFADC2DD9A8C3003CA4C6 /* AppIntents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +481,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68C77B192DDE15B200BEE39E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68C77B532DDE270300BEE39E /* LapModel.swift in Sources */,
+				68C77B522DDE26E900BEE39E /* WatchConnectivityManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68C77B282DDE15B300BEE39E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68C77B322DDE15B300BEE39E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -290,6 +516,21 @@
 			isa = PBXTargetDependency;
 			target = 3258FA622DCBD78E00413C98 /* Ashwaat */;
 			targetProxy = 3258FA7E2DCBD78F00413C98 /* PBXContainerItemProxy */;
+		};
+		68C77B2E2DDE15B300BEE39E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68C77B1C2DDE15B200BEE39E /* WatchAshhwaat Watch App */;
+			targetProxy = 68C77B2D2DDE15B300BEE39E /* PBXContainerItemProxy */;
+		};
+		68C77B382DDE15B300BEE39E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68C77B1C2DDE15B200BEE39E /* WatchAshhwaat Watch App */;
+			targetProxy = 68C77B372DDE15B300BEE39E /* PBXContainerItemProxy */;
+		};
+		68C77B3F2DDE15B300BEE39E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68C77B1C2DDE15B200BEE39E /* WatchAshhwaat Watch App */;
+			targetProxy = 68C77B3E2DDE15B300BEE39E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -555,6 +796,144 @@
 			};
 			name = Release;
 		};
+		68C77B422DDE15B300BEE39E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchAshhwaat Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = WVVL9YZMLF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchAshhwaat;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.Maryam.Ashwaat;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Maryam.Ashwaat.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		68C77B432DDE15B300BEE39E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchAshhwaat Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = WVVL9YZMLF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchAshhwaat;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.Maryam.Ashwaat;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Maryam.Ashwaat.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
+		68C77B462DDE15B300BEE39E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 59S9AH5LLK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Aliah.WatchAshhwaat-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchAshhwaat Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WatchAshhwaat Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		68C77B472DDE15B300BEE39E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 59S9AH5LLK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Aliah.WatchAshhwaat-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchAshhwaat Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WatchAshhwaat Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
+		68C77B492DDE15B300BEE39E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 59S9AH5LLK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Aliah.WatchAshhwaat-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "WatchAshhwaat Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		68C77B4A2DDE15B300BEE39E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 59S9AH5LLK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Aliah.WatchAshhwaat-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "WatchAshhwaat Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -590,6 +969,33 @@
 			buildConfigurations = (
 				3258FA8E2DCBD78F00413C98 /* Debug */,
 				3258FA8F2DCBD78F00413C98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68C77B412DDE15B300BEE39E /* Build configuration list for PBXNativeTarget "WatchAshhwaat Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68C77B422DDE15B300BEE39E /* Debug */,
+				68C77B432DDE15B300BEE39E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68C77B452DDE15B300BEE39E /* Build configuration list for PBXNativeTarget "WatchAshhwaat Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68C77B462DDE15B300BEE39E /* Debug */,
+				68C77B472DDE15B300BEE39E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68C77B482DDE15B300BEE39E /* Build configuration list for PBXNativeTarget "WatchAshhwaat Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68C77B492DDE15B300BEE39E /* Debug */,
+				68C77B4A2DDE15B300BEE39E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

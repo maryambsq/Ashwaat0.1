@@ -667,11 +667,11 @@ class TrackingManager: ObservableObject {
                 self.updateLapTracking()
                 
                 // Send data to watch if available
-                WatchConnectivityManager.shared.sendIndoorTrackingData(
-                    laps: self.indoorLaps,
-                    distance: self.indoorDistance,
-                    steps: self.indoorSteps
-                )
+//                WatchConnectivityManager.shared.sendIndoorTrackingData(
+//                    laps: self.indoorLaps,
+//                    distance: self.indoorDistance,
+//                    steps: self.indoorSteps
+//                )
             }
         }
         
