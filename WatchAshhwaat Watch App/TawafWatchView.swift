@@ -19,7 +19,7 @@ struct TawafWatchView: View {
                 Spacer()
                 Text("Tawaf")
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
-                    .foregroundColor(.green)
+                    .foregroundColor(Color("ReqColor"))
                 Spacer()
             }
             .padding(.bottom, 10)
@@ -36,7 +36,7 @@ struct TawafWatchView: View {
 
                 Circle()
                     .trim(from: 0, to: progress)
-                    .stroke(Color.green, style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                    .stroke(Color("ReqColor"), style: StrokeStyle(lineWidth: 12, lineCap: .round))
                     .rotationEffect(.degrees(-90))
                     .frame(width: 100, height: 100)
                     .id(circleID)
@@ -44,7 +44,7 @@ struct TawafWatchView: View {
 
                 Text("\(currentLap)")
                     .font(.system(size: 32, weight: .bold, design: .rounded))
-                    .foregroundColor(.green)
+                    .foregroundColor(Color("ReqColor"))
             }
 
             Spacer()
@@ -58,6 +58,7 @@ struct TawafWatchView: View {
                 EmptyView()
             }
         }
+        .buttonStyle(PlainButtonStyle())
         .padding()
         .background(Color.black)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
