@@ -916,7 +916,11 @@
         }
       }
     },
+    "Tawaaf" : {
+
+    },
     "Tawaf" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

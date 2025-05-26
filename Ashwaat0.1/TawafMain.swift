@@ -33,7 +33,7 @@ struct TawafMain: View {
                             .position(x: 50, y: geometry.size.height - 10)
                     }
                     VStack {
-                        Text("Tawaf")
+                        Text("Tawaaf")
                             .font(.title)
                             .fontWeight(.semibold)
                             .fontDesign(.rounded)
@@ -41,83 +41,113 @@ struct TawafMain: View {
                             .padding(.top)
 
                         Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
                         
                         RoundedRectangle(cornerRadius: 30)
                             .fill(Color("CardColor"))
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 450)
+                            .frame(width: .infinity, height: .infinity)
+
                             .overlay(
-                                VStack(spacing: 15) {
-                                    Spacer()
-
-                                    Image("ayah1")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 355, height: 115)
-                                        .padding(.top, -20)
-                                    
-                                    Spacer()
-                                    
-                                    Text("Let's begin counting your Ashwaat!")
-                                        .font(.largeTitle)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.white)
-                                        .multilineTextAlignment(.center)
-                                        .fontDesign(.rounded)
-                                        .padding(.top, 6)
-                                    
-                                    Spacer()
-                                    
-//                                    VStack(spacing: 8) {
-//                                        Text("📍 Tawaf Debug Info")
-//                                            .font(.headline)
-//                                            .foregroundColor(.white)
-//                                        Text("Tawaf Region: \(trackingManager.isInTawafZone ? "✅ INSIDE" : "❌ OUTSIDE")")
-//                                            .foregroundColor(trackingManager.isInTawafZone ? .green : .red)
-//
-//                                       
-//
-//                                        if let location = locationManager.currentUserLocation {
-//                                            Text(String(format: "Lat: %.6f", location.coordinate.latitude))
-//                                                .font(.caption)
-//                                                .foregroundColor(.white)
-//                                            Text(String(format: "Lon: %.6f", location.coordinate.longitude))
-//                                                .font(.caption)
-//                                                .foregroundColor(.white)
-//                                        } else {
-//                                            Text("Getting location...")
-//                                                .font(.caption)
-//                                                .foregroundColor(.gray)
-//                                        }
-//                                    }
-//                                    .padding(.top, 8)
-
-                                    Button(action: {
-                                        // Start tracking action here
-                                        navigateToTawaf = true
-
-                                    }) {
-                                        Text("Get Started")
-                                            .font(.headline)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(Color("ButtonTextColor"))
-                                            .frame(width: 185, height: 60)
-                                            .background(Color("SecondaryColor"))
-                                            .cornerRadius(20)
+                                ZStack(alignment: .bottom) {
+                                    VStack(spacing: 12) {
+                                        Image("ayah1")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 355, height: 115)
+                                            .padding(.top, -20)
+                                        
+                                        Text("Let's begin counting your Ashwaat!")
+                                            .font(.largeTitle)
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                            .multilineTextAlignment(.center)
                                             .fontDesign(.rounded)
+                                            .padding(.top, 6)
+                                            .lineLimit(nil)
+                                            .minimumScaleFactor(0.5)
+                                            .allowsTightening(true)
+                                    }
+                                    .padding(.horizontal)
+                                    .padding(.bottom, 60) // leaves space above button
 
-                                    }.disabled(!trackingManager.isInTawafZone)
-                                        .opacity(trackingManager.isInTawafZone ? 1.0 : 0.5)
-                                    .offset(y: 70)
-                                    NavigationLink("", destination: tawaf(), isActive: $navigateToTawaf)
-                                        .opacity(0)
-
+//                                    Button(action: {
+//                                        navigateToTawaf = true
+//                                    }) {
+//                                        Text("Get Started")
+//                                            .font(.headline)
+//                                            .fontWeight(.semibold)
+//                                            .foregroundColor(Color("ButtonTextColor"))
+//                                            .frame(height: 60)
+//                                            .frame(minWidth: 185)
+//                                            .background(Color("SecondaryColor"))
+//                                            .cornerRadius(20)
+//                                            .fontDesign(.rounded)
+//                                    }
+//                                    .disabled(!trackingManager.isInTawafZone)
+//                                    .opacity(trackingManager.isInTawafZone ? 1.0 : 0.5)
+//                                    .padding(.bottom, -50)
+//                                    
+//                                    NavigationLink("", destination: tawaf(), isActive: $navigateToTawaf)
+//                                        .opacity(0)
                                 }
-                                .padding()
                             )
                             .padding(.horizontal, 40)
                             .padding(.bottom, 55)
+                            .overlay(
+                                VStack {
+                                    
+                                    HStack {
+                                        Spacer()
+                                        Button(action: {
+                                            navigateToTawaf = true
+                                        }) {
+                                            Text("Get Started")
+                                                .font(.headline)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(Color("ButtonTextColor"))
+                                                .frame(height: 60)
+                                                .frame(minWidth: 185)
+                                                .background(Color("SecondaryColor"))
+                                                .cornerRadius(20)
+                                                .fontDesign(.rounded)
+                                                .lineLimit(nil)
+                                                .minimumScaleFactor(0.5)
+                                                .allowsTightening(true)
+                                        }
+                                        .disabled(!trackingManager.isInTawafZone)
+                                        .opacity(trackingManager.isInTawafZone ? 1.0 : 0.5)
+                                        .padding(.bottom, 10)
+                                        Spacer()
+                                    }
+                                    
+
+                                    NavigationLink("", destination: tawaf(), isActive: $navigateToTawaf)
+                                        .opacity(0)
+                                },
+                                alignment: .bottom
+                            )
                         
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
                         Spacer()
                     }
                 }

@@ -53,7 +53,7 @@ struct tawaf: View {
                     Spacer()
                     Spacer()
                     
-                    Text("Tawaf")
+                    Text("Tawaaf")
                         .font(.title)
                         .fontWeight(.semibold)
                         .fontDesign(.rounded)
@@ -171,26 +171,27 @@ struct tawaf: View {
                     .padding(.vertical, 15)
                     .background(Color.greeno)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                } else if showStartButton {
-                    Button("Start") {
-                        if trackingManager.isIndoorTrackingActive {
-                            stopIndoorTracking()
-                            showStartButton = true
-                        } else {
-                            startIndoorTracking()
-                            showStartButton = false
-                        }
-                    }
-                    .frame(width: 85, height: 40)
-                    .font(.title.bold())
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 50)
-                    .padding(.vertical, 15)
-                    .background(Color.greeno)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                } else {
+                } /*else if showStartButton {*/
+//                    Button("Start") {
+//                        if trackingManager.isIndoorTrackingActive {
+//                            stopIndoorTracking()
+//                            showStartButton = true
+//                        } else {
+//                            startIndoorTracking()
+//                            showStartButton = false
+//                        }
+//                    }
+//                    .frame(width: 85, height: 40)
+//                    .font(.title.bold())
+//                    .foregroundColor(.white)
+//                    .padding(.horizontal, 50)
+//                    .padding(.vertical, 15)
+//                    .background(Color.greeno)
+//                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                /*}*/ else {
                     Text(formattedTime)
-                        .frame(width: 85, height: 40)
+                        .frame(height: 40)
+                        .frame(minWidth: 85)
                         .font(.title.bold())
                         .padding(.horizontal, 50)
                         .padding(.vertical, 15)
