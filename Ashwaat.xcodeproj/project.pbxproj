@@ -578,6 +578,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Ashwaat0-1-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Ashwaat;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "We use motion data to count steps and improve accuracy during tracking.";
@@ -613,6 +614,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Ashwaat0-1-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Ashwaat;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "We use motion data to count steps and improve accuracy during tracking.";
