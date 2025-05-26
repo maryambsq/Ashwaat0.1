@@ -27,14 +27,27 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     }
     
     private func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.allowsBackgroundLocationUpdates = true
-        checkAuthorization()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.distanceFilter = kCLDistanceFilterNone
+//        locationManager.allowsBackgroundLocationUpdates = true
+//        checkAuthorization()
     }
     
     // MARK: - Authorization Methods
+    
+//    func activateLocationTrackingIfNeeded() {
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.distanceFilter = kCLDistanceFilterNone
+//        locationManager.allowsBackgroundLocationUpdates = true
+//        
+//        let status = CLLocationManager.authorizationStatus()
+//        if status == .notDetermined {
+//            requestLocationPermission()
+//        }
+//    }
+    
     func checkAuthorization() {
         authorizationStatus = locationManager.authorizationStatus
     }

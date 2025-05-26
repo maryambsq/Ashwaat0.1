@@ -40,7 +40,7 @@ struct Ashwaat0_1App: App {
 
     var body: some Scene {
         WindowGroup {
-            SplashScreen() 
+            SplashScreen()
                 .environmentObject(locationManager)
                 .environmentObject(trackingManager)
                 .environmentObject(watchConnectivityManager)

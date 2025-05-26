@@ -579,8 +579,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Ashwaat0-1-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Ashwaat;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to automatically track your Tawaf progress.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to automatically track your Tawaf progress.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "We use motion data to count steps and improve accuracy during tracking.";
 				INFOPLIST_KEY_NSSiriUsageDescription = "Allows Siri to start and manage a Tawaaf session in the app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -615,8 +615,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Ashwaat0-1-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Ashwaat;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to track your Tawaf progress.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to automatically track your Tawaf progress.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to automatically track your Tawaf progress.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "We use motion data to count steps and improve accuracy during tracking.";
 				INFOPLIST_KEY_NSSiriUsageDescription = "Allows Siri to start and manage a Tawaaf session in the app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

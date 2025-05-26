@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct TawafMain: View {
     @AppStorage("startTawaafFromSiri") var startTawaafFromSiri: Bool = false
     @State private var navigateToTawaf = false
     @EnvironmentObject var trackingManager: TrackingManager
     @EnvironmentObject var locationManager: LocationManager
+    @Environment(\.dismiss) var dismiss // ✅ استخدام الديسميس
 
     var body: some View {
         NavigationStack { // Use NavigationStack instead of NavigationView
@@ -33,13 +35,40 @@ struct TawafMain: View {
                             .position(x: 50, y: geometry.size.height - 10)
                     }
                     VStack {
-                        Text("Tawaaf")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .fontDesign(.rounded)
-                            .foregroundColor(Color("AccentColor"))
-                            .padding(.top)
+                        HStack {
+                            Spacer()
+                            Spacer()
 
+                            // ✅ زر الرجوع باستخدام dismiss
+                            Button(action: {
+                                dismiss()
+                            }) {
+                                Image(systemName: Locale.characterDirection(forLanguage: Locale.current.language.languageCode?.identifier ?? "") == .rightToLeft ? "chevron.right" : "chevron.left")
+                                    .font(.system(size: 40, weight: .medium))
+                                    .foregroundColor(.gray.opacity(0.5))
+                                    .padding(.trailing)
+                            }
+
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                            
+                            Text("Tawāf")
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .fontDesign(.rounded)
+                                .foregroundColor(.greeno)
+                                .padding(.trailing, 20)
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                        }
+                        
                         Spacer()
                         Spacer()
                         Spacer()
@@ -76,6 +105,19 @@ struct TawafMain: View {
                                             .lineLimit(nil)
                                             .minimumScaleFactor(0.5)
                                             .allowsTightening(true)
+                                        
+                                        Text("Make sure you are in the intended location for performing the ritual to initiate tracking.")
+                                            .font(.subheadline)
+                                            .foregroundColor(.white.opacity(0.9))
+                                            .multilineTextAlignment(.center)
+                                            .padding(.horizontal)
+                                            .padding(.top)
+                                        //                                .padding(.bottom, 5)
+                                            .fontDesign(.rounded)
+                                            .lineLimit(nil)
+                                            .minimumScaleFactor(0.5)
+                                            .allowsTightening(true)
+
                                     }
                                     .padding(.horizontal)
                                     .padding(.bottom, 60) // leaves space above button
@@ -109,14 +151,17 @@ struct TawafMain: View {
                                     HStack {
                                         Spacer()
                                         Button(action: {
-                                            navigateToTawaf = true
+                                            locationManager.activateLocationTrackingIfNeeded()
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                                navigateToTawaf = true
+                                            }
                                         }) {
-                                            Text("Get Started")
+                                            Text("Start Tawāf")
                                                 .font(.headline)
                                                 .fontWeight(.semibold)
                                                 .foregroundColor(Color("ButtonTextColor"))
                                                 .frame(height: 60)
-                                                .frame(minWidth: 185)
+                                                .padding(.horizontal, 35)
                                                 .background(Color("SecondaryColor"))
                                                 .cornerRadius(20)
                                                 .fontDesign(.rounded)
@@ -124,8 +169,8 @@ struct TawafMain: View {
                                                 .minimumScaleFactor(0.5)
                                                 .allowsTightening(true)
                                         }
-                                        .disabled(!trackingManager.isInTawafZone)
-                                        .opacity(trackingManager.isInTawafZone ? 1.0 : 0.5)
+//                                        .disabled(!trackingManager.isInTawafZone)
+//                                        .opacity(trackingManager.isInTawafZone ? 1.0 : 0.5)
                                         .padding(.bottom, 10)
                                         Spacer()
                                     }

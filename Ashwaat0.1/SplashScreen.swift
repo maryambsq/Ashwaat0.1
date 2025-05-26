@@ -14,7 +14,7 @@ struct SplashScreen: View {
     var body: some View {
         Group {
             if isActive {
-                AccessLocation()
+                VerifyLocation()
             } else {
                 ZStack {
                     Image("SplashBG")

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct tawaf: View {
     @AppStorage("finalLapDuration") var finalLapDuration: Int = 0
@@ -32,7 +33,7 @@ struct tawaf: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 40) {
-                Spacer()
+                Spacer(minLength: 30)
                 
                 HStack {
                     Spacer()
@@ -53,7 +54,7 @@ struct tawaf: View {
                     Spacer()
                     Spacer()
                     
-                    Text("Tawaaf")
+                    Text("Tawāf")
                         .font(.title)
                         .fontWeight(.semibold)
                         .fontDesign(.rounded)
@@ -235,9 +236,15 @@ struct tawaf: View {
                     navigateToNext = true
                 }
             }
-
             .navigationBarBackButtonHidden(true)
-        }
+            .task {
+                let actualStatus = CLLocationManager.authorizationStatus()
+                if actualStatus == .notDetermined {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        locationManager.requestLocationPermission()
+                    }
+                }
+            }        }
     }
     func startTimer() {
             showStartButton = false
