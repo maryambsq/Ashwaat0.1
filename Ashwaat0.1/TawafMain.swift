@@ -11,6 +11,7 @@ import CoreLocation
 struct TawafMain: View {
     @AppStorage("startTawaafFromSiri") var startTawaafFromSiri: Bool = false
     @State private var navigateToTawaf = false
+    @Environment(\.openURL) private var openURL
     @EnvironmentObject var trackingManager: TrackingManager
     @EnvironmentObject var locationManager: LocationManager
     @Environment(\.dismiss) var dismiss // ✅ استخدام الديسميس
@@ -54,7 +55,7 @@ struct TawafMain: View {
                             Spacer()
                             Spacer()
                             
-                            Text("Tawāf")
+                            Text("Tawaaf")
                                 .font(.title)
                                 .fontWeight(.semibold)
                                 .fontDesign(.rounded)
@@ -151,12 +152,15 @@ struct TawafMain: View {
                                     HStack {
                                         Spacer()
                                         Button(action: {
-                                            locationManager.activateLocationTrackingIfNeeded()
+//                                            locationManager.setupLocationManager()
+//                                            locationManager.requestLocationPermission()
+                                            locationManager.handleLocationAuthorization()
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                                 navigateToTawaf = true
+                                                locationManager.handleLocationAuthorization()
                                             }
                                         }) {
-                                            Text("Start Tawāf")
+                                            Text("Start Tawaaf")
                                                 .font(.headline)
                                                 .fontWeight(.semibold)
                                                 .foregroundColor(Color("ButtonTextColor"))
@@ -197,6 +201,27 @@ struct TawafMain: View {
                     }
                 }
             }
+            .onAppear {
+                // Auto-skip if permission already granted
+                let status = locationManager.authorizationStatus
+                if status == .authorizedWhenInUse || status == .authorizedAlways {
+                    navigateToTawaf = true
+                }
+            }
+            .onChange(of: locationManager.authorizationStatus) { newStatus in
+                if newStatus == .authorizedWhenInUse || newStatus == .authorizedAlways {
+                    navigateToTawaf = true
+                }
+            }
+            .onChange(of: locationManager.shouldOpenSettings) { shouldOpen in
+                if shouldOpen {
+                    if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                        openURL(settingsUrl)
+                    }
+                    locationManager.shouldOpenSettings = false
+                }
+            }
+
             .onChange(of: startTawaafFromSiri) { value in
                 if value {
                     navigateToTawaf = true

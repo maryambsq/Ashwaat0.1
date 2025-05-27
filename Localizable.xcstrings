@@ -887,9 +887,6 @@
     "Start Tawaaf" : {
 
     },
-    "Start Tawāf" : {
-
-    },
     "Steps" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -919,6 +916,9 @@
         }
       }
     },
+    "Tawaaf" : {
+
+    },
     "Tawaf" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -947,9 +947,6 @@
           }
         }
       }
-    },
-    "Tawāf" : {
-
     },
     "Tawaf Region: %@" : {
       "extractionState" : "stale",

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import AppIntents
-//import AppShortcuts
 import SwiftData
 import CoreMotion
 import CoreLocation
@@ -29,13 +28,6 @@ struct Ashwaat0_1App: App {
         GeofenceMainManager.shared.delegate = trackingManager
         GeofenceMainManager.shared.startMonitoring()
         
-//        // ✅ Register Siri Shortcuts
-//        AppShortcutsCenter.shared.registerShortcuts(from: [
-//            StartTawaafIntent(),
-//            CurrentLapCountIntent(),
-//            RemainingLapCountIntent()
-//        ])
-
     }
 
     var body: some Scene {

@@ -54,7 +54,7 @@ struct tawaf: View {
                     Spacer()
                     Spacer()
                     
-                    Text("Tawāf")
+                    Text("Tawaaf")
                         .font(.title)
                         .fontWeight(.semibold)
                         .fontDesign(.rounded)
