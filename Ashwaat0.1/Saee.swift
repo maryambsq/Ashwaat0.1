@@ -9,16 +9,13 @@ import SwiftUI
 
 struct Saee: View {
     @Environment(\.dismiss) var dismiss
-
     @State private var lapCount = 0
     @State private var timeElapsed: Int = 0
     @State private var timer: Timer?
     @State private var isTrackingPaused = false
     @State private var showStartButton = true
-
     @State private var progress: CGFloat = 0
     @State private var circleID = UUID()
-    
     @State private var navigateToNext = false // ✅ التنقل للنهاية
 
     var body: some View {

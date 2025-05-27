@@ -499,7 +499,11 @@
         }
       }
     },
+    "Laps tracked,\nfocus intact" : {
+
+    },
     "Laps tracked,\nFocus Intact" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

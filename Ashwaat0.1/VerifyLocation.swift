@@ -63,7 +63,7 @@ struct VerifyLocation: View {
                                         .frame(width: 355, height: 115)
                                         .padding(.top, -20)
                                     
-                                    Text("Laps tracked,\nFocus Intact")
+                                    Text("Laps tracked,\nfocus intact")
                                         .font(.largeTitle)
                                         .fontWeight(.bold)
                                         .foregroundColor(.white)
