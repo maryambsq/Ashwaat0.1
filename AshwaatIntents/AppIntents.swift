@@ -30,7 +30,7 @@ struct StartTawaafIntent: AppIntent {
 
 struct CurrentLapCountIntent: AppIntent {
     static var title: LocalizedStringResource = "Current Lap Number"
-    static var description = IntentDescription("Tells you how many laps you’ve completed and what lap you’re currently on.")
+    static var description = IntentDescription("Tells you how many laps you've completed and what lap you're currently on.")
     static var openAppWhenRun: Bool = true
 
     @AppStorage("currentIndoorLaps") var currentIndoorLaps: Int = 0
@@ -39,7 +39,7 @@ struct CurrentLapCountIntent: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog  {
         return .result(
-            dialog: IntentDialog("You’ve completed \(currentIndoorLaps) lap\(currentIndoorLaps == 1 ? "" : "s"). You're currently on lap \(currentIndoorLaps + 1).")
+            dialog: IntentDialog("You've completed \(currentIndoorLaps) lap\(currentIndoorLaps == 1 ? "" : "s"). You're currently on lap \(currentIndoorLaps + 1).")
         )
     }
 }
@@ -67,10 +67,10 @@ struct AshwaatAppShortcuts: AppShortcutsProvider {
             intent: StartTawaafIntent(),
             phrases: [
                 "Start Tawaaf in \(.applicationName)",
-                "Start Tawaaf",
-                "Begin my Tawaaf",
-                "Start tracking my Tawaaf",
-                "Begin Tawaaf laps"
+                "Start Tawaaf with \(.applicationName)",
+                "Begin my Tawaaf in \(.applicationName)",
+                "Start tracking my Tawaaf in \(.applicationName)",
+                "Begin Tawaaf laps in \(.applicationName)"
             ],
             shortTitle: "Start Tawaaf",
             systemImageName: "figure.walk.circle"
@@ -79,11 +79,11 @@ struct AshwaatAppShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: CurrentLapCountIntent(),
             phrases: [
-                "Which Tawaaf lap am I in?",
-                "What number of lap am I doing?",
-                "View current lap number",
-                "Current number of lap in \(.applicationName)",
+                "Which Tawaaf lap am I in \(.applicationName)?",
+                "What number of lap am I doing in \(.applicationName)?",
                 "View current lap number in \(.applicationName)",
+                "Current number of lap in \(.applicationName)",
+                "View current lap number in \(.applicationName)"
             ],
             shortTitle: "Current Lap",
             systemImageName: "checkmark.circle"
@@ -92,8 +92,8 @@ struct AshwaatAppShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: RemainingLapCountIntent(),
             phrases: [
-                "How many laps are left for my Tawaaf?",
-                "How many laps are left to complete?",
+                "How many laps are left for my Tawaaf in \(.applicationName)?",
+                "How many laps are left to complete in \(.applicationName)?",
                 "How many laps are left in \(.applicationName)?",
                 "View how many laps are left in \(.applicationName)"
             ],

@@ -12,6 +12,7 @@ import SwiftData
 import CoreMotion
 import CoreLocation
 import WatchConnectivity
+import ActivityKit
 
 @main
 struct Ashwaat0_1App: App {
@@ -24,11 +25,19 @@ struct Ashwaat0_1App: App {
         self.modelContainer = try! ModelContainer(for: TawafSession.self)
         let modelContext = modelContainer.mainContext
         self.trackingManager = TrackingManager(locationManager: locationManager, modelContext: modelContext)
+        UserDefaults.standard.set(1, forKey: "currentIndoorLaps")
+        UserDefaults.standard.set(1, forKey: "indoorLaps")
 
         // ✅ Start geofencing logic
         GeofenceMainManager.shared.delegate = trackingManager
         GeofenceMainManager.shared.startMonitoring()
         
+        // Add this to verify Live Activities support
+          if ActivityAuthorizationInfo().areActivitiesEnabled {
+              print("✅ Live Activities are enabled")
+          } else {
+              print("❌ Live Activities are not enabled")
+          }
 //        // ✅ Register Siri Shortcuts
 //        AppShortcutsCenter.shared.registerShortcuts(from: [
 //            StartTawaafIntent(),

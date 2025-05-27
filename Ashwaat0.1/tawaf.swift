@@ -10,6 +10,8 @@ import SwiftUI
 struct tawaf: View {
     @AppStorage("finalLapDuration") var finalLapDuration: Int = 0
     @Environment(\.dismiss) var dismiss // ✅ استخدام الديسميس
+    @State private var showBackConfirmation = false
+
 
 
     @State private var lapCount = 0
@@ -39,15 +41,45 @@ struct tawaf: View {
                     Spacer()
 
                     // ✅ زر الرجوع باستخدام dismiss
+//                    Button(action: {
+//                        dismiss()
+//                    })
+//                    
+//                    {
+//                        Image(systemName: Locale.characterDirection(forLanguage: Locale.current.language.languageCode?.identifier ?? "") == .rightToLeft ? "chevron.right" : "chevron.left")
+//                            .font(.system(size: 40, weight: .medium))
+//                            .foregroundColor(.gray.opacity(0.5))
+//                            .padding(.trailing)
+//                    }
+
                     Button(action: {
-                        dismiss()
+                        showBackConfirmation = true
                     }) {
-                        Image(systemName: Locale.characterDirection(forLanguage: Locale.current.language.languageCode?.identifier ?? "") == .rightToLeft ? "chevron.right" : "chevron.left")
+                         Image(systemName: Locale.characterDirection(forLanguage: Locale.current.language.languageCode?.identifier ?? "") == .rightToLeft ? "chevron.right" : "chevron.left")
                             .font(.system(size: 40, weight: .medium))
                             .foregroundColor(.gray.opacity(0.5))
                             .padding(.trailing)
                     }
+                    .alert(isPresented: $showBackConfirmation) {
+                        Alert(
+                            title: Text("Are you sure?"),
+                            message: Text("If you go back, the tracker will reset."),
+                            primaryButton: .destructive(Text("Leave")) {
+                                // Reset tracker here if needed
+                                 trackingManager.currentIndoorLaps = 1
+                                  trackingManager.indoorLaps = 1
+                                  showStartButton = true
+                                  isTrackingPaused = false
+                                  hasStartedTimer = false
+                                  trackingManager.isIndoorTrackingActive = false
+                                  trackingManager.lapProgress = 0
+                                dismiss()
+                            },
+                            secondaryButton: .cancel()
+                        )
+                    }
 
+                    
                     Spacer()
                     Spacer()
                     Spacer()
@@ -236,12 +268,17 @@ struct tawaf: View {
             }
 
             .navigationBarBackButtonHidden(true)
+         
         }
     }
+    
+    
+    
     func startTimer() {
             showStartButton = false
             timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                 timeElapsed += 1
+                trackingManager.updateLiveActivity()
 
                 if timeElapsed % 2 == 0 && lapCount < 7 {
 //                    progress = 0

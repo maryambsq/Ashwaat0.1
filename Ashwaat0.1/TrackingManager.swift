@@ -7,16 +7,18 @@ import CoreLocation
 import simd
 import SwiftData
 import SwiftUI
+import ActivityKit
 
 class TrackingManager: ObservableObject {
-    @AppStorage("currentIndoorLaps") var currentIndoorLaps: Int = 0
+    @AppStorage("currentIndoorLaps") var currentIndoorLaps: Int = 1
     @AppStorage("indoorLaps") var indoorLaps: Int = 1
     
     @Published var lapProgress: Double = 0.0 // Progress in percent (0–100%)
     
     // SwiftData-backed session
     @Published var session: TawafSession
-    
+    private var liveActivity: Activity<TrackerAttributes>?
+
     // ... existing properties
     private let motionManager = CMMotionManager()
     private let pedometer = CMPedometer()
@@ -42,8 +44,9 @@ class TrackingManager: ObservableObject {
     // Define Kaaba center and start line globally or in your init
     private var previousAngle: Double?
     private var lastDisplayedProgress: Double = 0.0
-    private let kaabaCoordinate = CLLocationCoordinate2D(latitude: 24.861225527575044, longitude: 46.728705289104646) // Demo coords
-    private let startLineCoordinate = CLLocationCoordinate2D(latitude: 24.861189093067217, longitude: 46.72848236153864) // Demo coords
+    private let kaabaCoordinate = CLLocationCoordinate2D(latitude: 24.78676046638857, longitude: 46.797685303859474) // Demo coords
+    private let startLineCoordinate = CLLocationCoordinate2D(latitude: 24.7868192, longitude: 46.7978089) //
+// Demo coords
 
     // Track progress angle
     private var accumulatedAngle: Double = 0.0
@@ -284,13 +287,16 @@ class TrackingManager: ObservableObject {
 //    private let maxCycleProgress: Double = 1.1 // 110% of full circle allowed
 //    
     // Kaaba center coordinates
-    private let kaabaCenterLatitude: Double = 24.861225527575044
-    private let kaabaCenterLongitude: Double = 46.728705289104646
-    private let startLineLatitude: Double = 24.861189093067217
-    private let startLineLongitude: Double = 46.72848236153864
+    private let kaabaCenterLatitude: Double = 24.861243009226268
+    private let kaabaCenterLongitude: Double = 46.72588801496373
+    private let startLineLatitude: Double = 24.8612402433558
+    private let startLineLongitude: Double = 46.725794310223705
+
     
-    private let startLinePointA = CLLocationCoordinate2D(latitude: 24.861225527575044, longitude: 46.728705289104646)
-    private let startLinePointB = CLLocationCoordinate2D(latitude: 24.861189093067217, longitude: 46.72848236153864)
+    private let startLinePointA = CLLocationCoordinate2D(latitude: 24.861243009226268, longitude: 46.72588801496373)
+    private let startLinePointB = CLLocationCoordinate2D(latitude: 24.8612402433558
+, longitude: 46.725794310223705
+)
     
     
     private var lastStartLineCrossing: CLLocation? = nil
@@ -448,11 +454,14 @@ class TrackingManager: ObservableObject {
                                 indoorLaps = currentIndoorLaps
                                 lapStatus = "Lap \(currentIndoorLaps) completed!"
                                 startLineAlert = "✅ Completed lap \(currentIndoorLaps)"
+                                 // Add this line to update Live Activity
+                                 updateLiveActivity()
                                 
                                 if currentIndoorLaps > maxLaps {
                                     lapStatus = "Tawaf Complete 🎉"
                                     isTawafComplete = true
                                     stopIndoorTracking()
+                                    endLiveActivity() // Add this line
 //                                    DispatchQueue.main.asyncAfter(deadline: .now() + summaryNavigationDelay) {
 //                                        NotificationCenter.default.post(name: .tawafCompleted, object: nil)
 //                                    }
@@ -510,10 +519,14 @@ class TrackingManager: ObservableObject {
                     lastStepCount = currentStepCount
                     lapStartDistance = indoorDistance
                     lapStatus = "Lap \(indoorLaps) completed! 🎉"
+                    updateLiveActivity()
+
                     if indoorLaps >= maxLaps {
                         lapStatus = "Tawaf Complete 🎉"
                         isTawafComplete = true
                         stopIndoorTracking()
+                        endLiveActivity() // Add this line
+
                        // DispatchQueue.main.asyncAfter(deadline: .now() + summaryNavigationDelay) {
                         //    NotificationCenter.default.post(name: .tawafCompleted, object: nil)
                         }
@@ -587,6 +600,9 @@ class TrackingManager: ObservableObject {
     
     func startIndoorTracking() {
         print("startIndoorTracking")
+        startLiveActivity()
+      
+        
         guard motionManager.isDeviceMotionAvailable else {
             trackingError = "Device motion not available"
             return
@@ -603,6 +619,8 @@ class TrackingManager: ObservableObject {
         isLapInProgress = false
         lapStartDistance = 0.0
         lapStatus = "Ready to start"
+        currentIndoorLaps = 1
+        indoorLaps = 1
         lastStepCount = 0
         lastDistance = 0.0
         turnCount = 0
@@ -665,7 +683,7 @@ class TrackingManager: ObservableObject {
                 
                 // Update lap tracking with enhanced accuracy
                 self.updateLapTracking()
-                
+             
                 // Send data to watch if available
                 WatchConnectivityManager.shared.sendIndoorTrackingData(
                     laps: self.indoorLaps,
@@ -756,6 +774,73 @@ class TrackingManager: ObservableObject {
     }
 
    
+    
+    
+
+        
+        // Add this function to start Live Activity
+    // In TrackingManager.swift
+    public func updateLiveActivity() {
+        Task {
+            guard let activity = liveActivity else {
+                print("⚠️ No active Live Activity found")
+                return
+            }
+            
+            let contentState = TrackerAttributes.ContentState(
+                currentLap: currentIndoorLaps,
+                elapsedTime: Date().timeIntervalSince(activity.attributes.startTime),
+                isActive: isIndoorTrackingActive,
+                lapProgress: lapProgress
+            )
+            
+            print("🔄 Updating Live Activity - Lap: \(currentIndoorLaps), Time: \(contentState.elapsedTime)")
+            await activity.update(using: contentState)
+        }
+    }
+
+    private func startLiveActivity() {
+        let attributes = TrackerAttributes(startTime: Date())
+        let contentState = TrackerAttributes.ContentState(
+            currentLap: currentIndoorLaps,
+            elapsedTime: 0,
+            isActive: true,
+            lapProgress: lapProgress
+        )
+        
+        do {
+            liveActivity = try Activity.request(
+                attributes: attributes,
+                contentState: contentState,
+                pushType: nil
+            )
+            print("✅ Started Live Activity: \(liveActivity?.id ?? "unknown")")
+        } catch {
+            print("❌ Error starting Live Activity: \(error.localizedDescription)")
+        }
+    }
+        // Add this function to end Live Activity
+        private func endLiveActivity() {
+            Task {
+                guard let activity = liveActivity else { return }
+                
+                let contentState = TrackerAttributes.ContentState(
+                    currentLap: currentIndoorLaps,
+                    elapsedTime: Date().timeIntervalSince(activity.attributes.startTime),
+                    isActive: false,
+                    lapProgress: lapProgress
+                )
+                
+                await activity.end(using: contentState, dismissalPolicy: .immediate)
+                liveActivity = nil
+            }
+        }
+    
+    
+    
+    
+    
+    
 }
 
 
