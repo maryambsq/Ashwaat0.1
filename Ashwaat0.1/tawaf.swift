@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreLocation
 
 struct tawaf: View {
     @AppStorage("finalLapDuration") var finalLapDuration: Int = 0
@@ -33,7 +32,7 @@ struct tawaf: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 40) {
-                Spacer(minLength: 30)
+                Spacer()
                 
                 HStack {
                     Spacer()
@@ -172,27 +171,26 @@ struct tawaf: View {
                     .padding(.vertical, 15)
                     .background(Color.greeno)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                } /*else if showStartButton {*/
-//                    Button("Start") {
-//                        if trackingManager.isIndoorTrackingActive {
-//                            stopIndoorTracking()
-//                            showStartButton = true
-//                        } else {
-//                            startIndoorTracking()
-//                            showStartButton = false
-//                        }
-//                    }
-//                    .frame(width: 85, height: 40)
-//                    .font(.title.bold())
-//                    .foregroundColor(.white)
-//                    .padding(.horizontal, 50)
-//                    .padding(.vertical, 15)
-//                    .background(Color.greeno)
-//                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                /*}*/ else {
+                } else if showStartButton {
+                    Button("Start") {
+                        if trackingManager.isIndoorTrackingActive {
+                            stopIndoorTracking()
+                            showStartButton = true
+                        } else {
+                            startIndoorTracking()
+                            showStartButton = false
+                        }
+                    }
+                    .frame(width: 85, height: 40)
+                    .font(.title.bold())
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 50)
+                    .padding(.vertical, 15)
+                    .background(Color.greeno)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                } else {
                     Text(formattedTime)
-                        .frame(height: 40)
-                        .frame(minWidth: 85)
+                        .frame(width: 85, height: 40)
                         .font(.title.bold())
                         .padding(.horizontal, 50)
                         .padding(.vertical, 15)
@@ -236,15 +234,9 @@ struct tawaf: View {
                     navigateToNext = true
                 }
             }
+
             .navigationBarBackButtonHidden(true)
-            .task {
-                let actualStatus = CLLocationManager.authorizationStatus()
-                if actualStatus == .notDetermined {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        locationManager.requestLocationPermission()
-                    }
-                }
-            }        }
+        }
     }
     func startTimer() {
             showStartButton = false

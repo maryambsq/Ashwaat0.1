@@ -27,7 +27,6 @@ struct Ashwaat0_1App: App {
         // ✅ Start geofencing logic
         GeofenceMainManager.shared.delegate = trackingManager
         GeofenceMainManager.shared.startMonitoring()
-        
     }
 
     var body: some Scene {

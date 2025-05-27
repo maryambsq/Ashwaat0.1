@@ -6,15 +6,14 @@
 //
 
 import SwiftUI
-import CoreLocation
 
 struct TawafMain: View {
     @AppStorage("startTawaafFromSiri") var startTawaafFromSiri: Bool = false
     @State private var navigateToTawaf = false
-    @Environment(\.openURL) private var openURL
     @EnvironmentObject var trackingManager: TrackingManager
     @EnvironmentObject var locationManager: LocationManager
     @Environment(\.dismiss) var dismiss // ✅ استخدام الديسميس
+
 
     var body: some View {
         NavigationStack { // Use NavigationStack instead of NavigationView
@@ -139,7 +138,7 @@ struct TawafMain: View {
 //                                    .disabled(!trackingManager.isInTawafZone)
 //                                    .opacity(trackingManager.isInTawafZone ? 1.0 : 0.5)
 //                                    .padding(.bottom, -50)
-//                                    
+//
 //                                    NavigationLink("", destination: tawaf(), isActive: $navigateToTawaf)
 //                                        .opacity(0)
                                 }
@@ -152,21 +151,15 @@ struct TawafMain: View {
                                     HStack {
                                         Spacer()
                                         Button(action: {
-//                                            locationManager.setupLocationManager()
-//                                            locationManager.requestLocationPermission()
-                                            locationManager.handleLocationAuthorization()
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                                navigateToTawaf = true
-                                                locationManager.handleLocationAuthorization()
-                                            }
+                                            navigateToTawaf = true
                                         }) {
                                             Text("Start Tawaaf")
                                                 .font(.headline)
                                                 .fontWeight(.semibold)
-                                                .foregroundColor(Color("ButtonTextColor"))
+                                                .foregroundColor(Color("GetStartedButtonTextColor"))
                                                 .frame(height: 60)
                                                 .padding(.horizontal, 35)
-                                                .background(Color("SecondaryColor"))
+                                                .background(Color("GetStartedButton"))
                                                 .cornerRadius(20)
                                                 .fontDesign(.rounded)
                                                 .lineLimit(nil)
@@ -201,27 +194,6 @@ struct TawafMain: View {
                     }
                 }
             }
-            .onAppear {
-                // Auto-skip if permission already granted
-                let status = locationManager.authorizationStatus
-                if status == .authorizedWhenInUse || status == .authorizedAlways {
-                    navigateToTawaf = true
-                }
-            }
-            .onChange(of: locationManager.authorizationStatus) { newStatus in
-                if newStatus == .authorizedWhenInUse || newStatus == .authorizedAlways {
-                    navigateToTawaf = true
-                }
-            }
-            .onChange(of: locationManager.shouldOpenSettings) { shouldOpen in
-                if shouldOpen {
-                    if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-                        openURL(settingsUrl)
-                    }
-                    locationManager.shouldOpenSettings = false
-                }
-            }
-
             .onChange(of: startTawaafFromSiri) { value in
                 if value {
                     navigateToTawaf = true
