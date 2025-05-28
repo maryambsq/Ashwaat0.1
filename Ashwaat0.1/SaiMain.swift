@@ -72,6 +72,7 @@ struct SaiMain: View {
                                     .background(Color("SecondaryColor"))
                                     .clipShape(RoundedRectangle(cornerRadius: 20))
                             }
+                            .disabled(true)
                             .padding(.bottom, 2),
                             alignment: .bottom
                         )

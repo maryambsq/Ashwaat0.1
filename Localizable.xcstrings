@@ -218,6 +218,9 @@
         }
       }
     },
+    "Are you sure?" : {
+
+    },
     "Ashwaat!" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -429,6 +432,9 @@
         }
       }
     },
+    "If you go back, the tracker will reset." : {
+
+    },
     "Item at %@" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -530,6 +536,9 @@
           }
         }
       }
+    },
+    "Leave" : {
+
     },
     "Let’s begin" : {
       "extractionState" : "stale",
@@ -984,7 +993,7 @@
     "Tells you how many laps are left to complete and what lap you're currently on." : {
 
     },
-    "Tells you how many laps you’ve completed and what lap you’re currently on." : {
+    "Tells you how many laps you've completed and what lap you're currently on." : {
 
     },
     "To accurately track your Tawaf and Sa'i, please allow location access while using the app." : {
@@ -1280,12 +1289,12 @@
     "You're not currently inside the Tawaaf zone. Please move into the area to begin." : {
 
     },
-    "You’ve completed %lld lap%@. You're currently on lap %lld." : {
+    "You've completed %lld lap%@. You're currently on lap %lld." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You’ve completed %1$lld lap%2$@. You're currently on lap %3$lld."
+            "value" : "You've completed %1$lld lap%2$@. You're currently on lap %3$lld."
           }
         }
       }
