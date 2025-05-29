@@ -42,18 +42,6 @@ struct tawaf: View {
                     Spacer()
                     Spacer()
 
-                    // ✅ زر الرجوع باستخدام dismiss
-//                    Button(action: {
-//                        dismiss()
-//                    })
-//                    
-//                    {
-//                        Image(systemName: Locale.characterDirection(forLanguage: Locale.current.language.languageCode?.identifier ?? "") == .rightToLeft ? "chevron.right" : "chevron.left")
-//                            .font(.system(size: 40, weight: .medium))
-//                            .foregroundColor(.gray.opacity(0.5))
-//                            .padding(.trailing)
-//                    }
-
                     Button(action: {
                         showBackConfirmation = true
                     }) {
@@ -117,7 +105,6 @@ struct tawaf: View {
                         .frame(width: 280, height: 280)
 
                     Circle()
-//                        .trim(from: 0, to: CGFloat(trackingManager.currentIndoorLaps))
                         .trim(from: 0, to: trackingManager.lapProgress / 100)
                         .stroke(isTrackingPaused ? Color.stopgreeno : Color.greeno, style: StrokeStyle(lineWidth: 40, lineCap: .round))
                         .rotationEffect(.degrees(-90))
@@ -142,55 +129,6 @@ struct tawaf: View {
                             .font(.subheadline)
                     }
                 }
-
-//                VStack(spacing: 12) {
-//                    HStack {
-//                        Circle()
-//                            .fill(trackingManager.hasCrossedStartLine ? Color.green : Color.orange)
-//                            .frame(width: 12, height: 12)
-//                        Text(trackingManager.hasCrossedStartLine ? "On Track" : "Find Start Line")
-//                            .font(.subheadline)
-//                    }
-//
-//                    Text(trackingManager.lapStatus)
-//                        .font(.subheadline)
-//                        .foregroundColor(.gray)
-//                        .multilineTextAlignment(.center)
-//                        .padding(.horizontal)
-//
-//                    if !trackingManager.startLineAlert.isEmpty {
-//                        Text(trackingManager.startLineAlert)
-//                            .font(.caption)
-//                            .foregroundColor(.orange)
-//                    }
-//
-//                    VStack {
-//                        Text("\(trackingManager.currentIndoorSteps)")
-//                            .font(.system(size: 20, weight: .bold))
-//                        Text("Steps")
-//                            .font(.caption)
-//                            .foregroundColor(.gray)
-//                    }
-//
-//                    VStack {
-//                        Text(String(format: "%.1f", trackingManager.currentIndoorDistance))
-//                            .font(.system(size: 20, weight: .bold))
-//                        Text("Meters")
-//                            .font(.caption)
-//                            .foregroundColor(.gray)
-//                    }
-//                    Text("\(Int(trackingManager.lapProgress))%")
-//                        .font(.title)
-//                        .bold()
-//                    Text("Mode: \(trackingManager.useMotionFallback ? "Indoor (Motion)" : "Outdoor (GPS)")")
-//                        .font(.caption)
-//                        .foregroundColor(trackingManager.useMotionFallback ? .orange : .green)
-//                    if trackingManager.isPausedDueToExit {
-//                        Text("⚠️ You left the Tawaf zone. Tracking paused.")
-//                            .foregroundColor(.orange)
-//                    }
-//                }
-//                .padding(.top, 20)
 
                 Spacer()
 
@@ -218,10 +156,10 @@ struct tawaf: View {
                     }
                     .frame(width: 85, height: 40)
                     .font(.title.bold())
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.GetStartedButtonTextColor)
                     .padding(.horizontal, 50)
                     .padding(.vertical, 15)
-                    .background(Color.greeno)
+                    .background(Color.GetStartedButton)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                 } else {
                     Text(formattedTime)
@@ -306,24 +244,6 @@ struct tawaf: View {
                 if timeElapsed % 2 == 0 && lapCount < 7 {
 //                    progress = 0
                     circleID = UUID()
-
-//                    withAnimation(.easeInOut(duration: 1.0)) {
-//                        progress = 1
-//                    }
-
-    //                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-    //                    lapCount += 1
-    //
-    //                    if lapCount == 6 {
-    //                        isTrackingPaused = true
-    //                        timer?.invalidate()
-    //                    }
-    //
-    //                    if lapCount == 7 {
-    //                        timer?.invalidate()
-    //                        navigateToNext = true // ✅ الانتقال التلقائي
-    //                    }
-    //                }
                 }
             }
         }

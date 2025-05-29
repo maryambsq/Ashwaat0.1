@@ -111,7 +111,7 @@ struct Summary: View {
                                         .shadow(color: Color("AccentColor"), radius: 3.5)
 
 
-                                    Text("You completed Tawaaf!")
+                                    Text("You completed Tawaf!")
                                         .foregroundColor(Color("AccentColor"))
                                         .font(.body)
                                         .fontWeight(.bold)

@@ -219,7 +219,20 @@
       }
     },
     "Are you sure?" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل انت متأكد؟"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es-tu sûr?"
+          }
+        }
+      }
     },
     "Ashwaat!" : {
       "extractionState" : "stale",
@@ -433,7 +446,20 @@
       }
     },
     "If you go back, the tracker will reset." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا رجعت، سوف يتم إعدة ضبط العداد التلقائي."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si vous revenez en arrière, le tracker sera réinitialisé."
+          }
+        }
+      }
     },
     "Item at %@" : {
       "extractionState" : "stale",
@@ -506,7 +532,20 @@
       }
     },
     "Laps tracked,\nfocus intact" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الأشواط تُعدّ، والخشوع يمتدّ"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tours suivis, concentration maintenue"
+          }
+        }
+      }
     },
     "Laps tracked,\nFocus Intact" : {
       "extractionState" : "stale",
@@ -538,7 +577,20 @@
       }
     },
     "Leave" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الرجوع"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partir"
+          }
+        }
+      }
     },
     "Let’s begin" : {
       "extractionState" : "stale",
@@ -898,7 +950,20 @@
       }
     },
     "Start Tawaaf" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ابــــدأ الطـــواف"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commencer le Tawaaf"
+          }
+        }
+      }
     },
     "Steps" : {
       "extractionState" : "stale",
@@ -930,7 +995,20 @@
       }
     },
     "Tawaaf" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطـــواف"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tawaaf"
+          }
+        }
+      }
     },
     "Tawaf" : {
       "extractionState" : "stale",
