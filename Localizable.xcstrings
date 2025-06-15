@@ -226,10 +226,22 @@
             "value" : "هل انت متأكد؟"
           }
         },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مطمئنی؟"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Es-tu sûr?"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کیا آپ کو یقین ہے؟"
           }
         }
       }
@@ -296,10 +308,60 @@
       }
     },
     "Current Lap" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الشوطة الحالية"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دور فعلی"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tour actuel"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موجودہ چکر"
+          }
+        }
+      }
     },
     "Current Lap Number" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رقم الشوطة الحالية"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شماره دور فعلی"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numéro de tour actuel"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موجودہ چکر نمبر"
+          }
+        }
+      }
     },
     "Done" : {
       "extractionState" : "manual",
@@ -307,7 +369,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "إتــــمـــام"
+            "value" : "إتــــمـام"
           }
         },
         "fa" : {
@@ -393,7 +455,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ابــــــــدأ"
+            "value" : "ابـــــــدأ"
           }
         },
         "fa" : {
@@ -453,10 +515,22 @@
             "value" : "إذا رجعت، سوف يتم إعدة ضبط العداد التلقائي."
           }
         },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اگر به عقب برگردید، ردیاب دوباره تنظیم می‌شود."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Si vous revenez en arrière, le tracker sera réinitialisé."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اگر آپ واپس جاتے ہیں تو ٹریکر ری سیٹ ہو جائے گا۔"
           }
         }
       }
@@ -539,10 +613,22 @@
             "value" : "الأشواط تُعدّ، والخشوع يمتدّ"
           }
         },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دورها ثبت شده‌اند، تمرکز حفظ شده است"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tours suivis, concentration maintenue"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "چکر ریکارڈ ہو گئے، توجہ برقرار ہے"
           }
         }
       }
@@ -584,10 +670,22 @@
             "value" : "الرجوع"
           }
         },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ترک"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Partir"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "چھوڑ دو"
           }
         }
       }
@@ -957,10 +1055,22 @@
             "value" : "ابــــدأ الطـــواف"
           }
         },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شروع طواف"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commencer le Tawaaf"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طـــواف شروع کریں"
           }
         }
       }
@@ -1002,10 +1112,22 @@
             "value" : "الطـــواف"
           }
         },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طـــواف"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tawaaf"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طـــواف"
           }
         }
       }
@@ -1022,7 +1144,7 @@
         "fa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الطـــواف"
+            "value" : "طـــواف"
           }
         },
         "fr" : {
@@ -1104,7 +1226,32 @@
       }
     },
     "You are inside the allowed area. Tawaaf has started in Ashwaat." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أنت داخل المنطقة الصحيحة، بدأ تتبع الطواف في أشواط."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شما داخل محدوده مجاز هستید. طواف در اشواط شروع شده است."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous êtes dans la zone autorisée. Le Tawaaf a commencé à Ashwaat."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آپ اجازت شدہ علاقے کے اندر ہیں۔ اشواط میں طواف شروع ہو چکا ہے۔"
+          }
+        }
+      }
     },
     "you completed Sa’i" : {
       "extractionState" : "manual",
@@ -1365,7 +1512,32 @@
       }
     },
     "You're not currently inside the Tawaaf zone. Please move into the area to begin." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أنت لستَ داخل منطقة الطواف. يُرجى الانتقال إلى المنطقة للبدء."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شما در حال حاضر داخل محدوده طواف نیستید. لطفاً برای شروع به داخل محدوده بروید."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n'êtes pas actuellement dans la zone de Tawaaf. Veuillez vous y rendre pour commencer."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آپ فی الحال طواف زون کے اندر نہیں ہیں۔ براہ کرم شروع کرنے کے لیے علاقے میں جائیں۔"
+          }
+        }
+      }
     },
     "You've completed %lld lap%@. You're currently on lap %lld." : {
       "localizations" : {
@@ -1373,6 +1545,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "You've completed %1$lld lap%2$@. You're currently on lap %3$lld."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آپ نے %1$lld چکر مکمل کر لیا ہے۔ آپ فی الحال چکر %3$lld میں ہیں۔"
           }
         }
       }

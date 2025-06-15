@@ -125,7 +125,7 @@ struct tawaf: View {
                         Circle()
                             .fill(trackingManager.hasCrossedStartLine ? Color.green : Color.orange)
                             .frame(width: 12, height: 12)
-                            Text(trackingManager.hasCrossedStartLine ? "On Track" : "Find Start Line")
+                            Text(trackingManager.hasCrossedStartLine ? "On Track" : "Find Black Stone")
                             .font(.subheadline)
                     }
                 }
