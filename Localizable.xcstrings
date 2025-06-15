@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "shouldTranslate" : false
     },
     "%lld" : {
       "extractionState" : "manual",
@@ -34,7 +34,7 @@
       }
     },
     "%lld%%" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -63,7 +63,7 @@
       }
     },
     "⚠️ You left the Tawaf zone. Tracking paused." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -92,7 +92,7 @@
       }
     },
     "📍 Tawaf Debug Info" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -121,7 +121,7 @@
       }
     },
     "Add Item" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -247,7 +247,7 @@
       }
     },
     "Ashwaat!" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -276,10 +276,35 @@
       }
     },
     "Begin tracking Tawaaf laps if inside the allowed area." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البدء بإحتساب الأشواط عند التواجد بالمنطقة الصحيحة"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "در صورت حضور در منطقه صحیح، پیگیری دورهای طواف را آغاز کنید."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commencez à suivre les tours de tawaf si vous êtes dans la zone autorisée.\n"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اگر آپ مجاز علاقے میں ہیں تو طواف کے چکروں کا سراغ لگانا شروع کریں۔"
+          }
+        }
+      }
     },
     "counting your" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -421,7 +446,7 @@
       }
     },
     "Focus intact" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -479,7 +504,7 @@
       }
     },
     "Getting location..." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -512,7 +537,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "إذا رجعت، سوف يتم إعدة ضبط العداد التلقائي."
+            "value" : "إذا عدت، سوف يتم إعدة ضبط العداد التلقائي."
           }
         },
         "fa" : {
@@ -536,7 +561,7 @@
       }
     },
     "Item at %@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -548,7 +573,7 @@
       "shouldTranslate" : false
     },
     "Laps tracked" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -634,7 +659,7 @@
       }
     },
     "Laps tracked,\nFocus Intact" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -691,7 +716,7 @@
       }
     },
     "Let’s begin" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -835,7 +860,7 @@
       }
     },
     "Meters" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -864,7 +889,7 @@
       }
     },
     "Mode: %@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -921,7 +946,32 @@
       }
     },
     "Remaining Laps" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الأشواط المتبقية"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دورهای باقی‌مانده"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tours restants\n"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "باقی رہ جانے والے چکر"
+          }
+        }
+      }
     },
     "Resume" : {
       "localizations" : {
@@ -1076,7 +1126,7 @@
       }
     },
     "Steps" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1133,7 +1183,7 @@
       }
     },
     "Tawaf" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1162,7 +1212,7 @@
       }
     },
     "Tawaf Region: %@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1191,10 +1241,60 @@
       }
     },
     "Tells you how many laps are left to complete and what lap you're currently on." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يقوم بإعلامك بعدد الأشواط المتبقية و يبين الشوط الحالي لك. "
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "به شما می‌گوید چند دور باقی‌مانده تا کامل شدن و اکنون در کدام دور هستید."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indique le nombre de tours restants et le tour en cours."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "یہ آپ کو بتاتا ہے کہ مکمل کرنے کے لیے کتنے چکر باقی ہیں اور آپ اس وقت کس چکر میں ہیں۔"
+          }
+        }
+      }
     },
     "Tells you how many laps you've completed and what lap you're currently on." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يقوم بإعلامك بعدد الأشواط التي أكملتها و يبين الشوط الحالي لك. "
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "به شما می‌گوید چند دور را کامل کرده‌اید و اکنون در کدام دور هستید."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indique les tours complétés et le tour en cours."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "یہ آپ کو بتاتا ہے کہ آپ نے کتنے چکر مکمل کیے ہیں اور اس وقت آپ کس چکر میں ہیں۔"
+          }
+        }
+      }
     },
     "To accurately track your Tawaf and Sa'i, please allow location access while using the app." : {
       "extractionState" : "manual",
@@ -1368,7 +1468,7 @@
       }
     },
     "you spent 40 min" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1454,7 +1554,7 @@
       }
     },
     "you took 4000 steps" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1541,10 +1641,28 @@
     },
     "You've completed %lld lap%@. You're currently on lap %lld." : {
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أنهيت %1$lld شوط%2$@. أنت الآن في الشوط رقم %3$lld."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "You've completed %1$lld lap%2$@. You're currently on lap %3$lld."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld دور%2$@ را کامل کرده‌اید. در حال حاضر در دور %3$lld هستید."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous avez complété %1$lld tour%2$@. Vous êtes actuellement au tour %3$lld."
           }
         },
         "ur" : {
